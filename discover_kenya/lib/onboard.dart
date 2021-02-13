@@ -1,3 +1,4 @@
+import 'package:discover_kenya/login.dart';
 import 'package:flutter/material.dart';
 import 'package:discover_kenya/signup.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -82,7 +83,12 @@ class Onboard extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EmailLogIn()),
+                  );
+                },
                 child: Text(
                   "Login",
                   style: GoogleFonts.raleway(

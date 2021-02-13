@@ -273,11 +273,12 @@ class _EmailSignUpState extends State<EmailSignUp> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 20),
+                                          padding: EdgeInsets.only(top: 30),
                                           child: isLoading
                                               ? CircularProgressIndicator()
-                                              : RaisedButton(
+                                              : MaterialButton(
                                                   color: Colors.lightBlue[600],
+                                                  splashColor: Colors.white,
                                                   onPressed: () {
                                                     if (_formKey.currentState
                                                         .validate()) {

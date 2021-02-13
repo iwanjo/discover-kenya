@@ -57,12 +57,15 @@ flutter:
   assets:
     - assets/logo.png
     - assets/background1.jpeg
+    - assets/background2.jpeg
     - assets/signup.jpg
     - assets/left.png
     - assets/back-button.png
     - assets/lock.png
     - assets/envelope.png
     - assets/user.png
+    - assets/login.jpg
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
