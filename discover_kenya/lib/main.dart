@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Discover Kenya',
-      // home: DKSplashScreen(),
-      home: Onboard(),
+      home: DKSplashScreen(),
+      // home: Onboard(),
     );
   }
 }
@@ -30,19 +30,22 @@ class DKSplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     User result = FirebaseAuth.instance.currentUser;
     return new SplashScreen(
-      navigateAfterSeconds:
-          result != null ? Home(uid: result.uid) : EmailSignUp(),
-      backgroundColor: Colors.red[800],
+      navigateAfterSeconds: result != null ? Home(uid: result.uid) : Onboard(),
+      seconds: 3,
+      backgroundColor: Colors.lightBlue[600],
       title: Text(
         "Discover Kenya",
         style: GoogleFonts.raleway(
-            fontWeight: FontWeight.bold, fontSize: 35.0, wordSpacing: .3),
+            fontWeight: FontWeight.bold,
+            fontSize: 35.0,
+            wordSpacing: .3,
+            color: Colors.white),
       ),
       image: Image.asset(
         "assets/logo.png",
-        fit: BoxFit.scaleDown,
+        fit: BoxFit.contain,
       ),
-      photoSize: 300.0,
+      photoSize: 100.0,
       loaderColor: Colors.white,
     );
   }

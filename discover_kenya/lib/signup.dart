@@ -11,6 +11,8 @@ class EmailSignUp extends StatefulWidget {
 }
 
 class _EmailSignUpState extends State<EmailSignUp> {
+  bool _isHidden2 = true;
+  bool _isHidden = true;
   bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -19,6 +21,7 @@ class _EmailSignUpState extends State<EmailSignUp> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordMatch = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final prevButton = FlatButton(
@@ -30,15 +33,15 @@ class _EmailSignUpState extends State<EmailSignUp> {
       },
       child: Image.asset(
         "assets/back-button.png",
-        width: 40.0,
-        height: 40.0,
+        width: 33.0,
+        height: 33.0,
       ),
     );
 
     final logo = Image.asset(
       "assets/logo.png",
-      width: 48.0,
-      height: 48.0,
+      width: 42.0,
+      height: 42.0,
     );
 
     return Scaffold(
@@ -117,7 +120,7 @@ class _EmailSignUpState extends State<EmailSignUp> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(bottom: 17.0),
+                                padding: EdgeInsets.only(bottom: 26.0),
                               ),
                               Text(
                                 "Get started for free",
@@ -128,10 +131,175 @@ class _EmailSignUpState extends State<EmailSignUp> {
                                 ),
                               ),
                               SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: <Widget>[],
+                                height:
+                                    MediaQuery.of(context).size.height * 0.56,
+                                width: MediaQuery.of(context).size.width * 0.74,
+                                child: Form(
+                                  key: _formKey,
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 20.0),
+                                          child: TextFormField(
+                                            controller: nameController,
+                                            style: GoogleFonts.raleway(
+                                              color: Colors.black,
+                                              fontSize: 17.0,
+                                              letterSpacing: .3,
+                                            ),
+                                            textCapitalization:
+                                                TextCapitalization.words,
+                                            decoration: InputDecoration(
+                                              floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                              labelText: "Name",
+                                              labelStyle: GoogleFonts.raleway(
+                                                color: Colors.black,
+                                                letterSpacing: .2,
+                                                fontSize: 15.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            validator: (value) {
+                                              if (value.isEmpty) {
+                                                return "Please enter your name";
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 20),
+                                          child: TextFormField(
+                                            style: GoogleFonts.raleway(
+                                              color: Colors.black,
+                                              fontSize: 17.0,
+                                              letterSpacing: .3,
+                                            ),
+                                            controller: emailController,
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            decoration: InputDecoration(
+                                              floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                              labelText: "Email Address",
+                                              labelStyle: GoogleFonts.raleway(
+                                                color: Colors.black,
+                                                letterSpacing: .2,
+                                                fontSize: 15.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            validator: (value) {
+                                              if (value.isEmpty) {
+                                                return 'Mandatory Field, Enter an Email Address';
+                                              } else if (!value.contains('@')) {
+                                                return 'Your email lacks an @ sign. Please include a valid email address into this field';
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 20),
+                                          child: TextFormField(
+                                            style: GoogleFonts.raleway(
+                                              color: Colors.black,
+                                              fontSize: 17.0,
+                                              letterSpacing: .3,
+                                            ),
+                                            controller: passwordController,
+                                            obscureText: _isHidden,
+                                            decoration: InputDecoration(
+                                              suffix: InkWell(
+                                                onTap: _togglePasswordView,
+                                                child: Icon(Icons.visibility),
+                                              ),
+                                              floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                              labelText: "Password",
+                                              labelStyle: GoogleFonts.raleway(
+                                                color: Colors.black,
+                                                letterSpacing: .2,
+                                                fontSize: 15.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            validator: (value) {
+                                              if (value.isEmpty) {
+                                                return 'Mandatory Field, Enter Password';
+                                              } else if (value.length < 8) {
+                                                return 'Password must be at least 8 characters!';
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 20),
+                                          child: TextFormField(
+                                            style: GoogleFonts.raleway(
+                                              color: Colors.black,
+                                              fontSize: 17.0,
+                                              letterSpacing: .3,
+                                            ),
+                                            controller: passwordMatch,
+                                            obscureText: _isHidden2,
+                                            decoration: InputDecoration(
+                                              suffix: InkWell(
+                                                onTap: _togglePasswordView2,
+                                                child: Icon(Icons.visibility),
+                                              ),
+                                              floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                              labelText: "Confirm Password",
+                                              labelStyle: GoogleFonts.raleway(
+                                                color: Colors.black,
+                                                letterSpacing: .2,
+                                                fontSize: 15.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            validator: (value) {
+                                              if (value.isEmpty) {
+                                                return 'Please confirm your password';
+                                              } else if (value !=
+                                                  passwordController.text) {
+                                                return 'Passwords do not match, try again';
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 20),
+                                          child: isLoading
+                                              ? CircularProgressIndicator()
+                                              : RaisedButton(
+                                                  color: Colors.lightBlue[600],
+                                                  onPressed: () {
+                                                    if (_formKey.currentState
+                                                        .validate()) {
+                                                      setState(() {
+                                                        isLoading = true;
+                                                      });
+                                                      registerToFb();
+                                                    }
+                                                  },
+                                                  child: Text(
+                                                    "Register",
+                                                    style: GoogleFonts.raleway(
+                                                        color: Colors.white,
+                                                        fontSize: 17.0,
+                                                        letterSpacing: .4),
+                                                  ),
+                                                ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           )
@@ -143,11 +311,66 @@ class _EmailSignUpState extends State<EmailSignUp> {
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _togglePasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
+
+  void _togglePasswordView2() {
+    setState(() {
+      _isHidden2 = !_isHidden2;
+    });
+  }
+
+  void registerToFb() {
+    firebaseAuth
+        .createUserWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text)
+        .then((result) {
+      dbRef.child(result.user.uid).set({
+        "email": emailController.text,
+        "name": nameController.text
+      }).then((res) {
+        isLoading = false;
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => Home(uid: result.user.uid)),
+        );
+      });
+    }).catchError((err) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Error"),
+              content: Text(err.message),
+              actions: [
+                FlatButton(
+                  child: Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
   }
 }
