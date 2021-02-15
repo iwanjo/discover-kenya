@@ -1,3 +1,4 @@
+import 'package:discover_kenya/tools/tab.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,29 @@ class Home extends StatelessWidget {
       "assets/black-logo.png",
       width: 38.0,
       height: 38.0,
+      fit: BoxFit.fill,
+    );
+
+    final flag = Image.asset(
+      "assets/flag.png",
+      width: 38.0,
+      height: 38.0,
+      fit: BoxFit.fill,
+    );
+
+    final square = Container(
+      height: 40,
+      width: 40,
+      // color: Colors.transparent,
+      decoration: BoxDecoration(
+          color: Colors.lightBlue[700],
+          borderRadius: BorderRadius.all(Radius.circular(7.0))),
+      child: Center(
+        child: Icon(
+          Icons.search,
+          color: Colors.white,
+        ),
+      ),
     );
 
     return Scaffold(
@@ -28,22 +52,7 @@ class Home extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.more_vert),
               onPressed: () {},
-            )
-            // IconButton(
-            //   icon: Icon(
-            //     Icons.exit_to_app,
-            //     color: Colors.white,
-            //   ),
-            //   onPressed: () {
-            //     FirebaseAuth auth = FirebaseAuth.instance;
-            //     auth.signOut().then((res) {
-            //       Navigator.pushAndRemoveUntil(
-            //           context,
-            //           MaterialPageRoute(builder: (context) => EmailSignUp()),
-            //           (Route<dynamic> route) => false);
-            //     });
-            //   },
-            // ),
+            ),
           ],
         ),
 
@@ -83,13 +92,124 @@ class Home extends StatelessWidget {
             ),
           ],
         ),
-        body: Form(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.all(35),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[],
-            ),
+        body: Container(
+          decoration: BoxDecoration(color: Colors.white),
+          child: ListView(
+            physics: BouncingScrollPhysics(),
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(top: 35.0, left: 25.0),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            "Discover Kenya",
+                            style: GoogleFonts.raleway(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 33.0,
+                                letterSpacing: .4),
+                          ),
+                          Container(
+                            alignment: Alignment.center,
+                            child: flag,
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 20.0),
+                        child: Text(
+                          "Beautiful Photos of Kenya",
+                          style: GoogleFonts.raleway(
+                            color: Colors.black,
+                            fontSize: 19.0,
+                            letterSpacing: .4,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                height: 40.0,
+                margin: EdgeInsets.all(25.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7.0),
+                  color: Colors.grey[300],
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    TextField(
+                      maxLengthEnforced: true,
+                      style: GoogleFonts.raleway(fontSize: 15.0),
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(
+                            left: 10,
+                            bottom: 10,
+                          ),
+                          border: InputBorder.none,
+                          hintText: "Search Great Photos",
+                          hintStyle: GoogleFonts.raleway(letterSpacing: .2)),
+                    ),
+                    Positioned(
+                      right: 0,
+                      top: 0,
+                      child: square,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: 25.0,
+                margin: EdgeInsets.only(top: 20.0),
+                padding: EdgeInsets.only(left: 38.0),
+                child: DefaultTabController(
+                  length: 4,
+                  child: TabBar(
+                      labelPadding: EdgeInsets.all(0),
+                      indicatorPadding: EdgeInsets.all(0),
+                      isScrollable: true,
+                      labelColor: Colors.black,
+                      unselectedLabelColor: Colors.grey,
+                      indicator: RoundedRectangleTabIndicator(
+                        width: 28,
+                        weight: 2,
+                        color: Colors.red,
+                      ),
+                      tabs: [
+                        Tab(
+                          child: Container(
+                            margin: EdgeInsets.only(right: 20.0),
+                            child: Text('The Pandemic'),
+                          ),
+                        ),
+                        Tab(
+                          child: Container(
+                            margin: EdgeInsets.only(right: 20.0),
+                            child: Text('Stress'),
+                          ),
+                        ),
+                        Tab(
+                          child: Container(
+                            margin: EdgeInsets.only(right: 20.0),
+                            child: Text('Depression'),
+                          ),
+                        ),
+                        Tab(
+                          child: Container(
+                            margin: EdgeInsets.only(right: 20.0),
+                            child: Text('Anxiety'),
+                          ),
+                        ),
+                      ]),
+                ),
+              ),
+            ],
           ),
         ),
         drawer: NavigateDrawer(uid: this.uid));
@@ -119,7 +239,11 @@ class _NavigateDrawerState extends State<NavigateDrawer> {
                     .once(),
                 builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
                   if (snapshot.hasData) {
-                    return Text(snapshot.data.value['email']);
+                    return Text(
+                      snapshot.data.value['email'],
+                      style: GoogleFonts.raleway(
+                          letterSpacing: .3, fontSize: 15.0),
+                    );
                   } else {
                     return CircularProgressIndicator();
                   }
@@ -135,7 +259,11 @@ class _NavigateDrawerState extends State<NavigateDrawer> {
                     .once(),
                 builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
                   if (snapshot.hasData) {
-                    return Text(snapshot.data.value['name']);
+                    return Text(
+                      snapshot.data.value['name'],
+                      style: GoogleFonts.raleway(
+                          letterSpacing: .3, fontSize: 15.0),
+                    );
                   } else {
                     return CircularProgressIndicator();
                   }
