@@ -31,7 +31,7 @@ class DKSplashScreen extends StatelessWidget {
     return new SplashScreen(
       navigateAfterSeconds: result != null ? Home(uid: result.uid) : Onboard(),
       seconds: 3,
-      backgroundColor: Colors.lightBlue[600],
+      backgroundColor: Colors.blue[700],
       title: Text(
         "Discover Kenya",
         style: GoogleFonts.raleway(

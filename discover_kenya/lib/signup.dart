@@ -1,3 +1,4 @@
+import 'package:discover_kenya/login.dart';
 import 'package:discover_kenya/onboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -296,7 +297,32 @@ class _EmailSignUpState extends State<EmailSignUp> {
                                                         letterSpacing: .4),
                                                   ),
                                                 ),
-                                        )
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 10, bottom: 20),
+                                          child: Align(
+                                              alignment: Alignment.bottomCenter,
+                                              child: TextButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            EmailLogIn()),
+                                                  );
+                                                },
+                                                child: Text(
+                                                    "Already have an account?",
+                                                    style: GoogleFonts.raleway(
+                                                      fontSize: 15.0,
+                                                      letterSpacing: .3,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    )),
+                                              )),
+                                        ),
                                       ],
                                     ),
                                   ),

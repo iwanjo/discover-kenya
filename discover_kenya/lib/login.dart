@@ -1,4 +1,5 @@
 import 'package:discover_kenya/onboard.dart';
+import 'package:discover_kenya/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -221,7 +222,31 @@ class _EmailLogInState extends State<EmailLogIn> {
                                                         letterSpacing: .4),
                                                   ),
                                                 ),
-                                        )
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 30),
+                                          child: Align(
+                                              alignment: Alignment.bottomCenter,
+                                              child: TextButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            EmailSignUp()),
+                                                  );
+                                                },
+                                                child: Text(
+                                                    "Don't have an account?",
+                                                    style: GoogleFonts.raleway(
+                                                      fontSize: 15.0,
+                                                      letterSpacing: .3,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    )),
+                                              )),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -275,7 +300,7 @@ class _EmailLogInState extends State<EmailLogIn> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                )
+                ),
               ],
             );
           });
