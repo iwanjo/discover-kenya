@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
-  final String iURL;
+  final String imageURL;
 
-  ItemCard({Key key, this.iURL}) : super(key: key);
+  ItemCard({Key key, this.imageURL}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

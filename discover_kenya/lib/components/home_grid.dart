@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:discover_kenya/components/grid.item.dart';
+import 'package:discover_kenya/components/card_item.dart';
 
 class HomeGrid extends StatelessWidget {
   // pictures' url list
@@ -23,7 +23,7 @@ class HomeGrid extends StatelessWidget {
           mainAxisSpacing: 5.0,
           childAspectRatio: 1.4,
           children: pics
-              .map((pic) => GridItem(
+              .map((pic) => ItemCard(
                     imageURL: pic,
                   ))
               .toList()),
