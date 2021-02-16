@@ -11,7 +11,7 @@ class ItemCard extends StatelessWidget {
       semanticContainer: true,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: Image.network(
-        iURL,
+        imageURL,
         fit: BoxFit.fill,
       ),
       shape: RoundedRectangleBorder(
