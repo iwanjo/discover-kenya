@@ -40,6 +40,9 @@ class Home extends StatelessWidget {
         ),
       ),
     );
+    var categories_list = [
+      "Wildlife",
+    ];
 
     return Scaffold(
         appBar: AppBar(
@@ -164,49 +167,107 @@ class Home extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                height: 25.0,
-                margin: EdgeInsets.only(top: 20.0),
-                padding: EdgeInsets.only(left: 38.0),
-                child: DefaultTabController(
-                  length: 4,
-                  child: TabBar(
-                      labelPadding: EdgeInsets.all(0),
-                      indicatorPadding: EdgeInsets.all(0),
-                      isScrollable: true,
-                      labelColor: Colors.black,
-                      unselectedLabelColor: Colors.grey,
-                      indicator: RoundedRectangleTabIndicator(
-                        width: 28,
-                        weight: 2,
-                        color: Colors.red,
+              // Container(
+              //   height: 25.0,
+              //   margin: EdgeInsets.only(top: 20.0),
+              //   padding: EdgeInsets.only(left: 38.0),
+              //   child: DefaultTabController(
+              //     length: 4,
+              //     child: TabBar(
+              //         labelPadding: EdgeInsets.all(0),
+              //         indicatorPadding: EdgeInsets.all(0),
+              //         isScrollable: true,
+              //         labelColor: Colors.black,
+              //         unselectedLabelColor: Colors.grey,
+              //         indicator: RoundedRectangleTabIndicator(
+              //           width: 28,
+              //           weight: 2,
+              //           color: Colors.red,
+              //         ),
+              //         tabs: [
+              //           Tab(
+              //             child: Container(
+              //               margin: EdgeInsets.only(right: 20.0),
+              //               child: Text('The Pandemic'),
+              //             ),
+              //           ),
+              //           Tab(
+              //             child: Container(
+              //               margin: EdgeInsets.only(right: 20.0),
+              //               child: Text('Stress'),
+              //             ),
+              //           ),
+              //           Tab(
+              //             child: Container(
+              //               margin: EdgeInsets.only(right: 20.0),
+              //               child: Text('Depression'),
+              //             ),
+              //           ),
+              //           Tab(
+              //             child: Container(
+              //               margin: EdgeInsets.only(right: 20.0),
+              //               child: Text('Anxiety'),
+              //             ),
+              //           ),
+              //         ]),
+              //   ),
+              // ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      height: 25.0,
+                      margin: EdgeInsets.only(top: 20.0),
+                      padding: EdgeInsets.only(left: 38.0),
+                      child: DefaultTabController(
+                        length: 5,
+                        child: TabBar(
+                            labelPadding: EdgeInsets.all(0),
+                            indicatorPadding: EdgeInsets.all(0),
+                            isScrollable: true,
+                            labelColor: Colors.black,
+                            unselectedLabelColor: Colors.grey,
+                            indicator: RoundedRectangleTabIndicator(
+                              width: 28,
+                              weight: 2,
+                              color: Colors.red,
+                            ),
+                            tabs: [
+                              Tab(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 20.0),
+                                  child: Text('The Pandemic'),
+                                ),
+                              ),
+                              Tab(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 20.0),
+                                  child: Text('Stress'),
+                                ),
+                              ),
+                              Tab(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 20.0),
+                                  child: Text('Depression'),
+                                ),
+                              ),
+                              Tab(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 20.0),
+                                  child: Text('Anxiety'),
+                                ),
+                              ),
+                              Tab(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 20.0),
+                                  child: Text('Anxiety'),
+                                ),
+                              ),
+                            ]),
                       ),
-                      tabs: [
-                        Tab(
-                          child: Container(
-                            margin: EdgeInsets.only(right: 20.0),
-                            child: Text('The Pandemic'),
-                          ),
-                        ),
-                        Tab(
-                          child: Container(
-                            margin: EdgeInsets.only(right: 20.0),
-                            child: Text('Stress'),
-                          ),
-                        ),
-                        Tab(
-                          child: Container(
-                            margin: EdgeInsets.only(right: 20.0),
-                            child: Text('Depression'),
-                          ),
-                        ),
-                        Tab(
-                          child: Container(
-                            margin: EdgeInsets.only(right: 20.0),
-                            child: Text('Anxiety'),
-                          ),
-                        ),
-                      ]),
+                    ),
+                  ],
                 ),
               ),
             ],
