@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'onboard.dart';
 import 'signup.dart';
+import 'package:discover_kenya/components/home_grid.dart';
 
 class Home extends StatelessWidget {
   Home({this.uid});
@@ -272,6 +273,9 @@ class Home extends StatelessWidget {
                   ],
                 ),
               ),
+
+              // Home grid for displaying pictures of the kenya
+              HomeGrid()
             ],
           ),
         ),
