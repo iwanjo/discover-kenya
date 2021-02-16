@@ -185,7 +185,7 @@ class Home extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       height: 25.0,
-                      margin: EdgeInsets.only(top: 20.0),
+                      margin: EdgeInsets.only(top: 10.0),
                       padding: EdgeInsets.only(left: 28.0),
                       child: DefaultTabController(
                         // length: 5,
