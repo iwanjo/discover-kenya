@@ -8,7 +8,9 @@ import 'signup.dart';
 
 class Home extends StatelessWidget {
   Home({this.uid});
+
   final String uid;
+
   @override
   Widget build(BuildContext context) {
     final buttonSize = MediaQuery.of(context);
@@ -114,7 +116,7 @@ class Home extends StatelessWidget {
                             style: GoogleFonts.raleway(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 33.0,
+                                fontSize: 30.0,
                                 letterSpacing: .4),
                           ),
                           Container(
@@ -279,7 +281,9 @@ class Home extends StatelessWidget {
 
 class NavigateDrawer extends StatefulWidget {
   final String uid;
+
   NavigateDrawer({Key key, this.uid}) : super(key: key);
+
   @override
   _NavigateDrawerState createState() => _NavigateDrawerState();
 }
