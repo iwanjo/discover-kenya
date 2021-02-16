@@ -12,11 +12,16 @@ class HomeGrid extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         crossAxisCount: 2,
         crossAxisSpacing: 5.0,
-        mainAxisSpacing: 8.0,
+        mainAxisSpacing: 5.0,
+        childAspectRatio: 1.2,
         children: [
           GridItem(
           ),
           GridItem(
+          ),GridItem(
+          ),GridItem(
+          ),GridItem(
+          ),GridItem(
           ),
         ],
       ),

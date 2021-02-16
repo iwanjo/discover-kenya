@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:discover_kenya/components/card_item.dart';
 
 class GridItem extends StatelessWidget {
   final String imageName;
@@ -9,16 +10,7 @@ class GridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(0.0),
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        color: Theme.of(context).primaryColor,
-
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-          ],
-        ),
-      ),
+      child: ItemCard(),
     );
   }
 }
