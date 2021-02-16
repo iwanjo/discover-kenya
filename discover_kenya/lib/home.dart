@@ -45,6 +45,14 @@ class Home extends StatelessWidget {
     );
     var categories_list = [
       "Wildlife",
+      "Architecture",
+      "Landscape",
+      "Beach",
+      "Creative",
+      "Fashion",
+      "Food",
+      "Culture",
+      "Night"
     ];
 
     return Scaffold(
@@ -170,51 +178,7 @@ class Home extends StatelessWidget {
                   ],
                 ),
               ),
-              // Container(
-              //   height: 25.0,
-              //   margin: EdgeInsets.only(top: 20.0),
-              //   padding: EdgeInsets.only(left: 38.0),
-              //   child: DefaultTabController(
-              //     length: 4,
-              //     child: TabBar(
-              //         labelPadding: EdgeInsets.all(0),
-              //         indicatorPadding: EdgeInsets.all(0),
-              //         isScrollable: true,
-              //         labelColor: Colors.black,
-              //         unselectedLabelColor: Colors.grey,
-              //         indicator: RoundedRectangleTabIndicator(
-              //           width: 28,
-              //           weight: 2,
-              //           color: Colors.red,
-              //         ),
-              //         tabs: [
-              //           Tab(
-              //             child: Container(
-              //               margin: EdgeInsets.only(right: 20.0),
-              //               child: Text('The Pandemic'),
-              //             ),
-              //           ),
-              //           Tab(
-              //             child: Container(
-              //               margin: EdgeInsets.only(right: 20.0),
-              //               child: Text('Stress'),
-              //             ),
-              //           ),
-              //           Tab(
-              //             child: Container(
-              //               margin: EdgeInsets.only(right: 20.0),
-              //               child: Text('Depression'),
-              //             ),
-              //           ),
-              //           Tab(
-              //             child: Container(
-              //               margin: EdgeInsets.only(right: 20.0),
-              //               child: Text('Anxiety'),
-              //             ),
-              //           ),
-              //         ]),
-              //   ),
-              // ),
+
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -222,9 +186,10 @@ class Home extends StatelessWidget {
                     Container(
                       height: 25.0,
                       margin: EdgeInsets.only(top: 20.0),
-                      padding: EdgeInsets.only(left: 38.0),
+                      padding: EdgeInsets.only(left: 28.0),
                       child: DefaultTabController(
-                        length: 5,
+                        // length: 5,
+                        length: categories_list.length,
                         child: TabBar(
                             labelPadding: EdgeInsets.all(0),
                             indicatorPadding: EdgeInsets.all(0),
@@ -240,31 +205,55 @@ class Home extends StatelessWidget {
                               Tab(
                                 child: Container(
                                   margin: EdgeInsets.only(right: 20.0),
-                                  child: Text('The Pandemic'),
+                                  child: Text(categories_list[0]),
                                 ),
                               ),
                               Tab(
                                 child: Container(
                                   margin: EdgeInsets.only(right: 20.0),
-                                  child: Text('Stress'),
+                                  child: Text(categories_list[1]),
                                 ),
                               ),
                               Tab(
                                 child: Container(
                                   margin: EdgeInsets.only(right: 20.0),
-                                  child: Text('Depression'),
+                                  child: Text(categories_list[2]),
                                 ),
                               ),
                               Tab(
                                 child: Container(
                                   margin: EdgeInsets.only(right: 20.0),
-                                  child: Text('Anxiety'),
+                                  child: Text(categories_list[3]),
                                 ),
                               ),
                               Tab(
                                 child: Container(
                                   margin: EdgeInsets.only(right: 20.0),
-                                  child: Text('Anxiety'),
+                                  child: Text(categories_list[4]),
+                                ),
+                              ),
+                              Tab(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 20.0),
+                                  child: Text(categories_list[5]),
+                                ),
+                              ),
+                              Tab(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 20.0),
+                                  child: Text(categories_list[6]),
+                                ),
+                              ),
+                              Tab(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 20.0),
+                                  child: Text(categories_list[7]),
+                                ),
+                              ),
+                              Tab(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 20.0),
+                                  child: Text(categories_list[8]),
                                 ),
                               ),
                             ]),
