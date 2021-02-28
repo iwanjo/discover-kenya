@@ -201,62 +201,12 @@ class Home extends StatelessWidget {
                               weight: 2,
                               color: Colors.red,
                             ),
-                            tabs: [
-                              Tab(
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 20.0),
-                                  child: Text(categories_list[0]),
-                                ),
-                              ),
-                              Tab(
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 20.0),
-                                  child: Text(categories_list[1]),
-                                ),
-                              ),
-                              Tab(
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 20.0),
-                                  child: Text(categories_list[2]),
-                                ),
-                              ),
-                              Tab(
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 20.0),
-                                  child: Text(categories_list[3]),
-                                ),
-                              ),
-                              Tab(
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 20.0),
-                                  child: Text(categories_list[4]),
-                                ),
-                              ),
-                              Tab(
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 20.0),
-                                  child: Text(categories_list[5]),
-                                ),
-                              ),
-                              Tab(
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 20.0),
-                                  child: Text(categories_list[6]),
-                                ),
-                              ),
-                              Tab(
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 20.0),
-                                  child: Text(categories_list[7]),
-                                ),
-                              ),
-                              Tab(
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 20.0),
-                                  child: Text(categories_list[8]),
-                                ),
-                              ),
-                            ]),
+                            tabs: categories_list
+                                .map((category) => Container(
+                                      margin: EdgeInsets.only(right: 20.0),
+                                      child: Text(category),
+                                    ))
+                                .toList()),
                       ),
                     ),
                   ],
