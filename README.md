@@ -6,7 +6,7 @@ The purpose of this project is to build a platform, Discover Kenya, on Flutter a
 - Clone the Repo
 - Make sure to cd to discover_kenya
 - Ensure you are running the latest version of Flutter and have set the PATH variable
-- run: flutter run
+- From your terminal run: `flutter run`
 
 # Project Screenshots
 
