@@ -44,7 +44,7 @@ class Home extends StatelessWidget {
         ),
       ),
     );
-    var categories_list = [
+    var categoriesList = [
       "Wildlife",
       "Architecture",
       "Landscape",
@@ -191,7 +191,7 @@ class Home extends StatelessWidget {
                       margin: EdgeInsets.only(top: 10.0),
                       padding: EdgeInsets.only(left: 28.0),
                       child: DefaultTabController(
-                        length: categories_list.length,
+                        length: categoriesList.length,
                         child: TabBar(
                             labelPadding: EdgeInsets.all(0),
                             indicatorPadding: EdgeInsets.all(0),
@@ -203,7 +203,7 @@ class Home extends StatelessWidget {
                               weight: 2,
                               color: Colors.red,
                             ),
-                            tabs: categories_list
+                            tabs: categoriesList
                                 .map((category) => Container(
                                       margin: EdgeInsets.only(right: 20.0),
                                       child: Text(category),
