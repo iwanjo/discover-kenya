@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'onboard.dart';
 import 'signup.dart';
 import 'package:discover_kenya/components/home_grid.dart';
+import 'package:discover_kenya/categories_pics.dart';
 
 class Home extends StatelessWidget {
   Home({this.uid});
@@ -46,13 +47,13 @@ class Home extends StatelessWidget {
     var categories_list = [
       "Wildlife",
       "Architecture",
-      "Landscape",
-      "Beach",
-      "Creative",
-      "Fashion",
-      "Food",
-      "Culture",
-      "Night"
+      // "Landscape",
+      // "Beach",
+      // "Creative",
+      // "Fashion",
+      // "Food",
+      // "Culture",
+      // "Night"
     ];
 
     return Scaffold(
@@ -149,6 +150,7 @@ class Home extends StatelessWidget {
                   ),
                 ),
               ),
+
               Container(
                 height: 40.0,
                 margin: EdgeInsets.all(25.0),
@@ -179,6 +181,7 @@ class Home extends StatelessWidget {
                 ),
               ),
 
+              // display TapBar
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -188,7 +191,6 @@ class Home extends StatelessWidget {
                       margin: EdgeInsets.only(top: 10.0),
                       padding: EdgeInsets.only(left: 28.0),
                       child: DefaultTabController(
-                        // length: 5,
                         length: categories_list.length,
                         child: TabBar(
                             labelPadding: EdgeInsets.all(0),
@@ -214,7 +216,7 @@ class Home extends StatelessWidget {
               ),
 
               // Home grid for displaying pictures of the kenya
-              HomeGrid()
+              // HomeGrid()
             ],
           ),
         ),
