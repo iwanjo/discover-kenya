@@ -47,13 +47,13 @@ class Home extends StatelessWidget {
     var categories_list = [
       "Wildlife",
       "Architecture",
-      // "Landscape",
-      // "Beach",
-      // "Creative",
-      // "Fashion",
-      // "Food",
-      // "Culture",
-      // "Night"
+      "Landscape",
+      "Beach",
+      "Creative",
+      "Fashion",
+      "Food",
+      "Culture",
+      "Night"
     ];
 
     return Scaffold(
@@ -216,7 +216,7 @@ class Home extends StatelessWidget {
               ),
 
               // Home grid for displaying pictures of the kenya
-              // HomeGrid()
+              HomeGrid()
             ],
           ),
         ),
