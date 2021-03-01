@@ -204,10 +204,12 @@ class Home extends StatelessWidget {
                               color: Colors.red,
                             ),
                             tabs: categoriesList
-                                .map((category) => Container(
-                                      margin: EdgeInsets.only(right: 20.0),
-                                      child: Text(category),
-                                    ))
+                                .map((category) => Tab(
+                                  child: Container(
+                                        margin: EdgeInsets.only(right: 20.0),
+                                        child: Text(category),
+                                      ),
+                                ))
                                 .toList()),
                       ),
                     ),
