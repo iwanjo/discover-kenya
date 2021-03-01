@@ -205,10 +205,18 @@ class Home extends StatelessWidget {
                             ),
                             tabs: categoriesList
                                 .map((category) => Tab(
-                                  child: Container(
-                                        margin: EdgeInsets.only(right: 20.0),
-                                        child: Text(category),
-                                      ),
+                                  // child: Container(
+                                  //       margin: EdgeInsets.only(right: 20.0),
+                                  //       child: Text(category),
+                                  //     ),
+                              child: FlatButton(
+                                color: Colors.transparent,
+                                onPressed: () {
+                                  HomeGrid();
+                                },
+                                  child: Text(category)
+
+                              )
                                 ))
                                 .toList()),
                       ),
@@ -218,7 +226,7 @@ class Home extends StatelessWidget {
               ),
 
               // Home grid for displaying pictures of the kenya
-              HomeGrid()
+              // HomeGrid()
             ],
           ),
         ),
