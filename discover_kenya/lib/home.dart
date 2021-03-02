@@ -4,6 +4,61 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'onboard.dart';
 import 'package:discover_kenya/components/tab_bar.dart';
+import 'package:discover_kenya/profile.dart';
+
+class BottomBar extends StatefulWidget {
+  @override
+  _BottomBarState createState() => _BottomBarState();
+}
+
+class _BottomBarState extends State<BottomBar> {
+  int _currentIndex = 0;
+  final List<Widget> _children = [Profile()];
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      onTap: onTabTapped,
+      elevation: 0,
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: Colors.lightBlue[700],
+      selectedLabelStyle: GoogleFonts.raleway(
+          fontSize: 15.0, letterSpacing: .3, fontWeight: FontWeight.bold),
+      unselectedLabelStyle: GoogleFonts.raleway(
+          fontSize: 14.0, letterSpacing: .2, color: Colors.black),
+      iconSize: 20.0,
+      currentIndex: _currentIndex,
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.home_outlined,
+          ),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.explore_outlined, color: Colors.black),
+          label: 'Discover',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.favorite_outline, color: Colors.black),
+          label: 'Liked',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.account_circle_outlined,
+            color: Colors.black,
+          ),
+          label: 'Profile',
+        ),
+      ],
+    );
+  }
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+}
 
 class Home extends StatelessWidget {
   Home({this.uid});
@@ -69,40 +124,41 @@ class Home extends StatelessWidget {
         ),
 
         // Bottom Navbar items. Added fixed to the type, to ensure we can add more than 3 items.
-        bottomNavigationBar: BottomNavigationBar(
-          elevation: 0,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.lightBlue[700],
-          selectedLabelStyle: GoogleFonts.raleway(
-              fontSize: 15.0, letterSpacing: .3, fontWeight: FontWeight.bold),
-          unselectedLabelStyle: GoogleFonts.raleway(
-              fontSize: 14.0, letterSpacing: .2, color: Colors.black),
-          iconSize: 20.0,
-          currentIndex: 0,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home_outlined,
-              ),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.explore_outlined, color: Colors.black),
-              label: 'Discover',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_outline, color: Colors.black),
-              label: 'Liked',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.account_circle_outlined,
-                color: Colors.black,
-              ),
-              label: 'Profile',
-            ),
-          ],
-        ),
+        // bottomNavigationBar: BottomNavigationBar(
+        //   elevation: 0,
+        //   type: BottomNavigationBarType.fixed,
+        //   selectedItemColor: Colors.lightBlue[700],
+        //   selectedLabelStyle: GoogleFonts.raleway(
+        //       fontSize: 15.0, letterSpacing: .3, fontWeight: FontWeight.bold),
+        //   unselectedLabelStyle: GoogleFonts.raleway(
+        //       fontSize: 14.0, letterSpacing: .2, color: Colors.black),
+        //   iconSize: 20.0,
+        //   currentIndex: 0,
+        //   items: [
+        //     BottomNavigationBarItem(
+        //       icon: Icon(
+        //         Icons.home_outlined,
+        //       ),
+        //       label: 'Home',
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.explore_outlined, color: Colors.black),
+        //       label: 'Discover',
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.favorite_outline, color: Colors.black),
+        //       label: 'Liked',
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(
+        //         Icons.account_circle_outlined,
+        //         color: Colors.black,
+        //       ),
+        //       label: 'Profile',
+        //     ),
+        //   ],
+        // ),
+        bottomNavigationBar: BottomBar(),
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
