@@ -1,12 +1,10 @@
-import 'package:discover_kenya/tools/tab.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'onboard.dart';
 import 'signup.dart';
-import 'package:discover_kenya/components/home_grid.dart';
-import 'package:discover_kenya/categories_pics.dart';
+import 'package:discover_kenya/components/tab_bar.dart';
 
 class Home extends StatelessWidget {
   Home({this.uid});
@@ -72,7 +70,6 @@ class Home extends StatelessWidget {
         ),
 
         // Bottom Navbar items. Added fixed to the type, to ensure we can add more than 3 items.
-
         bottomNavigationBar: BottomNavigationBar(
           elevation: 0,
           type: BottomNavigationBarType.fixed,
@@ -182,51 +179,43 @@ class Home extends StatelessWidget {
               ),
 
               // display TapBar
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      height: 25.0,
-                      margin: EdgeInsets.only(top: 10.0),
-                      padding: EdgeInsets.only(left: 28.0),
-                      child: DefaultTabController(
-                        length: categoriesList.length,
-                        child: TabBar(
-                            labelPadding: EdgeInsets.all(0),
-                            indicatorPadding: EdgeInsets.all(0),
-                            isScrollable: true,
-                            labelColor: Colors.black,
-                            unselectedLabelColor: Colors.grey,
-                            indicator: RoundedRectangleTabIndicator(
-                              width: 28,
-                              weight: 2,
-                              color: Colors.red,
-                            ),
-                            tabs: categoriesList
-                                .map((category) => Tab(
-                                  // child: Container(
-                                  //       margin: EdgeInsets.only(right: 20.0),
-                                  //       child: Text(category),
-                                  //     ),
-                              child: FlatButton(
-                                color: Colors.transparent,
-                                onPressed: () {
-                                  HomeGrid();
-                                },
-                                  child: Text(category)
+              // SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   child: Row(
+              //     children: <Widget>[
+              //       Container(
+              //         height: 25.0,
+              //         margin: EdgeInsets.only(top: 10.0),
+              //         padding: EdgeInsets.only(left: 28.0),
+              //         child: DefaultTabController(
+              //           length: categoriesList.length,
+              //           child: TabBar(
+              //               labelPadding: EdgeInsets.all(0),
+              //               indicatorPadding: EdgeInsets.all(0),
+              //               isScrollable: true,
+              //               labelColor: Colors.black,
+              //               unselectedLabelColor: Colors.grey,
+              //               indicator: RoundedRectangleTabIndicator(
+              //                 width: 28,
+              //                 weight: 2,
+              //                 color: Colors.red,
+              //               ),
+              //               tabs: categoriesList
+              //                   .map((category) => Tab(
+              //                         child: Container(
+              //                           margin: EdgeInsets.only(right: 20.0),
+              //                           child: Text(category),
+              //                         ),
+              //                       ))
+              //                   .toList()),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
 
-                              )
-                                ))
-                                .toList()),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              CategoriesTabBar(),
 
-              // Home grid for displaying pictures of the kenya
-              // HomeGrid()
             ],
           ),
         ),
