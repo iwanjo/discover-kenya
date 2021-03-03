@@ -192,7 +192,7 @@ class Home extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: 20.0),
                         child: Text(
-                          "Beautiful Photos of Kenya",
+                          "Beautiful photos of Kenya",
                           style: GoogleFonts.raleway(
                             color: Colors.black,
                             fontSize: 19.0,
