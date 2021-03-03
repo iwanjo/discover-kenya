@@ -10,7 +10,7 @@ One can click on a photo to get more details about it such as destination etc.
 ## How to Test
 
 - Clone the Repo
-- MMake sure to cd to discover_kenya and proceed to cd again to the discover_kenya.
+- Make sure to cd to discover_kenya and proceed to cd again to the discover_kenya.
 - Ensure you are running the latest version of Flutter and have set the PATH variable
 - From your terminal run: `flutter run`
 
