@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final user = FirebaseAuth.instance.currentUser;
 
@@ -16,12 +17,11 @@ class Pagenav extends StatefulWidget {
 
 class _PagenavState extends State<Pagenav> {
   int _selectedIndex = 0;
-   List<Widget> _widgetOptions = <Widget>[
+  List<Widget> _widgetOptions = <Widget>[
     Home(uid: user.uid),
-    Likes(),
     Discover(),
+    Likes(),
     Profile()
-   
   ];
   @override
   Widget build(BuildContext context) {
@@ -38,27 +38,29 @@ class _PagenavState extends State<Pagenav> {
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: GNav(
                 rippleColor: Colors.grey[300],
-                hoverColor: Colors.grey[100],
+                hoverColor: Colors.grey[200],
                 gap: 8,
-                activeColor: Colors.black,
+                activeColor: Colors.lightBlue[700],
                 iconSize: 24,
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 duration: Duration(milliseconds: 400),
                 tabBackgroundColor: Colors.grey[100],
+                textStyle: GoogleFonts.raleway(
+                    letterSpacing: .3, color: Colors.lightBlue[700]),
                 tabs: [
                   GButton(
                     icon: LineIcons.home,
                     text: 'Home',
                   ),
                   GButton(
-                    icon: LineIcons.heart_o,
-                    text: 'Likes',
-                  ),
-                  GButton(
                     icon: LineIcons.fire,
                     text: 'Discover',
                   ),
-                   GButton(
+                  GButton(
+                    icon: LineIcons.heart_o,
+                    text: 'Saved',
+                  ),
+                  GButton(
                     icon: LineIcons.user,
                     text: 'Profile',
                   )
@@ -118,13 +120,13 @@ class _PagenavState extends State<Pagenav> {
 //           ),
 //           label: 'Profile',
 //         ),
-//       ],                            
+//       ],
 //     );
 //   }
 
 //   void onTabTapped(int index) {
 //     setState(() {
-      
+
 //       _currentIndex = index;
 //     });
 //   }
