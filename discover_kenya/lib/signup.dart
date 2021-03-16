@@ -1,9 +1,9 @@
 import 'package:discover_kenya/login.dart';
 import 'package:discover_kenya/onboard.dart';
+import 'package:discover_kenya/pagenav.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:discover_kenya/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EmailSignUp extends StatefulWidget {
@@ -370,7 +370,7 @@ class _EmailSignUpState extends State<EmailSignUp> {
         isLoading = false;
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => Home(uid: result.user.uid)),
+          MaterialPageRoute(builder: (context) =>   Pagenav()),
         );
       });
     }).catchError((err) {

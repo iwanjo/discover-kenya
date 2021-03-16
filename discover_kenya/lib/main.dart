@@ -1,9 +1,9 @@
+import 'package:discover_kenya/pagenav.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:discover_kenya/home.dart';
 import 'package:discover_kenya/onboard.dart';
 
 void main() async {
@@ -29,7 +29,7 @@ class DKSplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     User result = FirebaseAuth.instance.currentUser;
     return new SplashScreen(
-      navigateAfterSeconds: result != null ? Home(uid: result.uid) : Onboard(),
+      navigateAfterSeconds: result != null ? Pagenav() : Onboard(),
       seconds: 3,
       backgroundColor: Colors.blue[700],
       title: Text(
