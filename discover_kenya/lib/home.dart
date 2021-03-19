@@ -1,3 +1,5 @@
+import 'package:discover_kenya/profile.dart';
+import 'package:discover_kenya/upload.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -263,14 +265,16 @@ class _NavigateDrawerState extends State<NavigateDrawer> {
           ListTile(
             leading: new IconButton(
               icon: new Icon(Icons.upload_outlined, color: Colors.black),
-              onPressed: () => null,
+              onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Upload())),
             ),
             title: Text(
               'Upload',
               style: GoogleFonts.raleway(fontSize: 15.0, letterSpacing: .25),
             ),
             onTap: () {
-              print(widget.uid);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Upload()));
             },
           ),
           Padding(
@@ -280,14 +284,16 @@ class _NavigateDrawerState extends State<NavigateDrawer> {
             leading: new IconButton(
               icon:
                   new Icon(Icons.account_circle_outlined, color: Colors.black),
-              onPressed: () => null,
+              onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Profile())),
             ),
             title: Text(
               'Profile',
               style: GoogleFonts.raleway(fontSize: 15.0, letterSpacing: .25),
             ),
             onTap: () {
-              print(widget.uid);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Profile()));
             },
           ),
           Padding(

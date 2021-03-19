@@ -9,21 +9,17 @@ class Discover extends StatefulWidget {
 class _DiscoverState extends State<Discover> {
   @override
   Widget build(BuildContext context) {
-    final List<String> discover_categories = <String>[
+    final List<String> discoverCategories = <String>[
       "Adventure",
       "Architectural",
       "Beach",
-      "Creative",
       "Culture",
       "Fashion",
       "Food",
       "Golden Hour",
       "Landscape",
       "Night",
-      "Pet",
-      "Real Estate",
       "Sport",
-      "Underwater",
       "Wildlife",
     ];
 
@@ -85,14 +81,14 @@ class _DiscoverState extends State<Discover> {
               child: ListView.separated(
                 scrollDirection: Axis.vertical,
                 padding: const EdgeInsets.all(8),
-                itemCount: discover_categories.length,
+                itemCount: discoverCategories.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-                    height: 120,
+                    height: MediaQuery.of(context).size.height * .4,
                     color: Colors.lightBlue[700],
                     child: Center(
                         child: Text(
-                      '${discover_categories[index]}',
+                      '${discoverCategories[index]}',
                       style: GoogleFonts.raleway(
                           letterSpacing: .3,
                           fontWeight: FontWeight.bold,
