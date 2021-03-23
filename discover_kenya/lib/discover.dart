@@ -23,13 +23,6 @@ class _DiscoverState extends State<Discover> {
       "Wildlife",
     ];
 
-    final logo = Image.asset(
-      "assets/black-logo.png",
-      width: 38.0,
-      height: 38.0,
-      fit: BoxFit.fill,
-    );
-
     final flag = Image.asset(
       "assets/flag.png",
       width: 38.0,

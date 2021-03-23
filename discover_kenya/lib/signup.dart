@@ -25,7 +25,7 @@ class _EmailSignUpState extends State<EmailSignUp> {
   TextEditingController passwordMatch = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final prevButton = FlatButton(
+    final prevButton = TextButton(
       onPressed: () {
         Navigator.push(
           context,
@@ -370,7 +370,7 @@ class _EmailSignUpState extends State<EmailSignUp> {
         isLoading = false;
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) =>   Pagenav()),
+          MaterialPageRoute(builder: (context) => Pagenav()),
         );
       });
     }).catchError((err) {
@@ -381,7 +381,7 @@ class _EmailSignUpState extends State<EmailSignUp> {
               title: Text("Error"),
               content: Text(err.message),
               actions: [
-                FlatButton(
+                TextButton(
                   child: Text("Ok"),
                   onPressed: () {
                     Navigator.of(context).pop();

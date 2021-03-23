@@ -18,7 +18,7 @@ class _EmailLogInState extends State<EmailLogIn> {
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
-    final prevButton = FlatButton(
+    final prevButton = TextButton(
       onPressed: () {
         Navigator.push(
           context,
@@ -294,7 +294,7 @@ class _EmailLogInState extends State<EmailLogIn> {
               title: Text("Error"),
               content: Text(err.message),
               actions: [
-                FlatButton(
+                TextButton(
                   child: Text("Ok"),
                   onPressed: () {
                     Navigator.of(context).pop();

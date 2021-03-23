@@ -1,4 +1,6 @@
+import 'package:discover_kenya/help.dart';
 import 'package:discover_kenya/profile.dart';
+import 'package:discover_kenya/settings.dart';
 import 'package:discover_kenya/upload.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -42,17 +44,8 @@ class Home extends StatelessWidget {
         ),
       ),
     );
-    // var categoriesList = [
-    //   "Wildlife",
-    //   "Architecture",
-    //   "Landscape",
-    //   "Beach",
-    //   "Creative",
-    //   "Fashion",
-    //   "Food",
-    //   "Culture",
-    //   "Night"
-    // ];
+    var _selectedItem = Home(uid: uid);
+    List _menuOptions = [Profile(), Settings(), Help()];
 
     return Scaffold(
         appBar: AppBar(
@@ -62,10 +55,49 @@ class Home extends StatelessWidget {
           title: logo,
           centerTitle: true,
           actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: () {},
+            PopupMenuButton(
+              itemBuilder: (content) => [
+                PopupMenuItem(
+                    value: 1,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Settings()),
+                        );
+                      },
+                      child: Text(
+                        "Settings",
+                        style: GoogleFonts.raleway(
+                            fontSize: 13.0,
+                            letterSpacing: .03,
+                            color: Colors.black),
+                      ),
+                    )),
+                PopupMenuItem(
+                    value: 2,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Help()),
+                        );
+                      },
+                      child: Text(
+                        "Help",
+                        style: GoogleFonts.raleway(
+                            fontSize: 13.0,
+                            letterSpacing: .03,
+                            color: Colors.black),
+                      ),
+                    )),
+              ],
             ),
+
+            // IconButton(
+            //   icon: Icon(Icons.more_vert),
+            //   onPressed: () {},
+            // ),
           ],
         ),
         body: Container(
@@ -123,6 +155,7 @@ class Home extends StatelessWidget {
                 child: Stack(
                   children: <Widget>[
                     TextField(
+                      // ignore: deprecated_member_use
                       maxLengthEnforced: true,
                       style: GoogleFonts.raleway(fontSize: 15.0),
                       decoration: InputDecoration(
@@ -202,26 +235,6 @@ class _NavigateDrawerState extends State<NavigateDrawer> {
                 },
               ),
             ),
-            // currentAccountPicture: FutureBuilder(
-            //   future: FirebaseDatabase.instance
-            //       .reference()
-            //       .child("Users")
-            //       .child(widget.uid)
-            //       .once(),
-            //   builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
-            //     if (snapshot.hasData) {
-            //       return Text(
-            //         snapshot.data.value['name'].substring(0, 1),
-            //       );
-            //     } else {
-            //       return CircularProgressIndicator();
-            //     }
-            //   },
-            // ),
-            // currentAccountPicture: CircleAvatar(
-            //     backgroundColor: Colors.white,
-            //     child: Text('AW', style: GoogleFonts.raleway(fontSize: 14.0))),
-
             accountName: FutureBuilder(
                 future: FirebaseDatabase.instance
                     .reference()
