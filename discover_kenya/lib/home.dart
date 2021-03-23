@@ -185,8 +185,43 @@ class _NavigateDrawerState extends State<NavigateDrawer> {
                   }
                 }),
             currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Text('AW', style: GoogleFonts.raleway(fontSize: 14.0))),
+              backgroundColor: Colors.white,
+              child: FutureBuilder(
+                future: FirebaseDatabase.instance
+                    .reference()
+                    .child("Users")
+                    .child(widget.uid)
+                    .once(),
+                builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
+                  if (snapshot.hasData) {
+                    return Text(snapshot.data.value['name'].substring(0, 1),
+                        style: GoogleFonts.raleway(fontSize: 14.0));
+                  } else {
+                    return CircularProgressIndicator();
+                  }
+                },
+              ),
+            ),
+            // currentAccountPicture: FutureBuilder(
+            //   future: FirebaseDatabase.instance
+            //       .reference()
+            //       .child("Users")
+            //       .child(widget.uid)
+            //       .once(),
+            //   builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
+            //     if (snapshot.hasData) {
+            //       return Text(
+            //         snapshot.data.value['name'].substring(0, 1),
+            //       );
+            //     } else {
+            //       return CircularProgressIndicator();
+            //     }
+            //   },
+            // ),
+            // currentAccountPicture: CircleAvatar(
+            //     backgroundColor: Colors.white,
+            //     child: Text('AW', style: GoogleFonts.raleway(fontSize: 14.0))),
+
             accountName: FutureBuilder(
                 future: FirebaseDatabase.instance
                     .reference()
