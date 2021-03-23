@@ -1,5 +1,10 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:async/async.dart';
 
 class Upload extends StatefulWidget {
   @override
@@ -7,6 +12,7 @@ class Upload extends StatefulWidget {
 }
 
 class _UploadState extends State<Upload> {
+  String imageUrl;
   @override
   Widget build(BuildContext context) {
     final logo = Image.asset(
@@ -34,71 +40,61 @@ class _UploadState extends State<Upload> {
           scrollDirection: Axis.vertical,
           child: Stack(
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * .05),
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Image.asset(
-                    "assets/upload-page.jpeg",
-                    width: 300,
-                    height: 300,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * .48),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Upload Files",
-                    style: GoogleFonts.raleway(
-                      color: Colors.black,
-                      fontSize: 21.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * .56,
-                  left: MediaQuery.of(context).size.width * .14,
-                  right: MediaQuery.of(context).size.width * .14,
-                ),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Browse the files you want to upload",
-                    style: GoogleFonts.raleway(
-                      color: Colors.black,
-                      fontSize: 17.0,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * .65),
-                child: MaterialButton(
-                  color: Colors.lightBlue[700],
-                  shape: CircleBorder(),
-                  onPressed: () {},
-                  child: Padding(
-                    padding: EdgeInsets.all(20),
-                    child: Center(
-                      child: Icon(
-                        Icons.upload_file,
-                        color: Colors.white,
+              (imageUrl != null)
+                  ? Image.network(imageUrl)
+                  : Align(
+                      alignment: Alignment.topCenter,
+                      child: Image.network(
+                        'https://o.remove.bg/downloads/a3a1ef44-99a4-48b8-b508-4219c065cbe1/images-removebg-preview.png',
+                        height: MediaQuery.of(context).size.height,
+                        width: double.infinity,
                       ),
                     ),
-                  ),
-                ),
+              SizedBox(
+                height: 25.0,
               ),
+              Padding(
+                  padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * .48),
+                  child: Align(
+                    child: ElevatedButton(
+                        onPressed: () => uploadImage(),
+                        child: Text("Upload Files")),
+                  )),
             ],
           ),
         ));
+  }
+
+  uploadImage() async {
+    final _firebaseStorage = FirebaseStorage.instance;
+    final _imagePicker = ImagePicker();
+    PickedFile image;
+    //Check Permissions
+    await Permission.photos.request();
+
+    var permissionStatus = await Permission.photos.status;
+
+    if (permissionStatus.isGranted) {
+      //Select Image
+      image = await _imagePicker.getImage(source: ImageSource.gallery);
+      var file = File(image.path);
+
+      if (image != null) {
+        //Upload to Firebase
+        var snapshot = await _firebaseStorage
+            .ref()
+            .child('images/imageName')
+            .putFile(file);
+        var downloadUrl = await snapshot.ref.getDownloadURL();
+        setState(() {
+          imageUrl = downloadUrl;
+        });
+      } else {
+        print('No Image Path Received');
+      }
+    } else {
+      print('Permission not granted. Try Again with permission access');
+    }
   }
 }
