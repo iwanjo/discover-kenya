@@ -39,7 +39,7 @@ class _PagenavState extends State<Pagenav> {
             child: GNav(
                 rippleColor: Colors.grey[300],
                 hoverColor: Colors.grey[200],
-                gap: 8,
+                gap: 4,
                 activeColor: Colors.lightBlue[700],
                 iconSize: 24,
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),

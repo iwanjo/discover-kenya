@@ -44,8 +44,6 @@ class Home extends StatelessWidget {
         ),
       ),
     );
-    var _selectedItem = Home(uid: uid);
-    List _menuOptions = [Profile(), Settings(), Help()];
 
     return Scaffold(
         appBar: AppBar(
