@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:discover_kenya/pagenav.dart';
-
-import 'help.dart';
+import 'package:discover_kenya/help.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 
 var user = FirebaseAuth.instance.currentUser;
 
@@ -18,6 +18,8 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  Position _currentPosition;
+  String _currentAddress;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,10 +44,6 @@ class _ProfileState extends State<Profile> {
           },
         ),
         centerTitle: true,
-        // elevation: 0,
-        // iconTheme: IconThemeData(color: Colors.white),
-        // title: Text('Violet'),
-        // centerTitle: true,
         actions: <Widget>[
           PopupMenuButton(
             itemBuilder: (content) => [
@@ -129,7 +127,9 @@ class _ProfileState extends State<Profile> {
                       return Text(
                         snapshot.data.value['name'],
                         style: GoogleFonts.raleway(
-                            fontSize: 15.0, letterSpacing: .04),
+                            fontSize: 18.0,
+                            letterSpacing: .04,
+                            fontWeight: FontWeight.bold),
                       );
                     } else {
                       return CircularProgressIndicator();
@@ -142,8 +142,23 @@ class _ProfileState extends State<Profile> {
               ),
               Text(
                 'Enter your one line bio here',
-                style: TextStyle(color: Colors.black87, fontSize: 20.0),
+                style: GoogleFonts.raleway(letterSpacing: .3, fontSize: 15.0),
               ),
+              SizedBox(
+                height: 25.0,
+              ),
+              if (_currentAddress != null)
+                Text(
+                  _currentAddress,
+                  style: GoogleFonts.raleway(letterSpacing: .3, fontSize: 15.0),
+                ),
+              TextButton(
+                  onPressed: () {
+                    _getCurrentLocation();
+                  },
+                  child: Text("Get Location",
+                      style: GoogleFonts.raleway(
+                          fontSize: 14.0, letterSpacing: .2))),
               SizedBox(
                 height: 30.0,
               ),
@@ -231,5 +246,33 @@ class _ProfileState extends State<Profile> {
         ),
       ),
     );
+  }
+
+  _getCurrentLocation() {
+    Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.best,
+            forceAndroidLocationManager: true)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+        _getAddressFromLatLng();
+      });
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  _getAddressFromLatLng() async {
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+          _currentPosition.latitude, _currentPosition.longitude);
+      Placemark place = placemarks[0];
+
+      setState(() {
+        _currentAddress = "${place.locality}, ${place.country}";
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 }
