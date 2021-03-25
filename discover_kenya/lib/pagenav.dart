@@ -21,7 +21,7 @@ class _PagenavState extends State<Pagenav> {
     Home(uid: user.uid),
     Discover(),
     Likes(),
-    Profile()
+    Profile(uid: user.uid)
   ];
   @override
   Widget build(BuildContext context) {

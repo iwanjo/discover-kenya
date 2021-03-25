@@ -1,8 +1,11 @@
 import 'dart:io';
+import 'package:discover_kenya/help.dart';
+import 'package:discover_kenya/settings.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Upload extends StatefulWidget {
   @override
@@ -28,9 +31,44 @@ class _UploadState extends State<Upload> {
           title: logo,
           centerTitle: true,
           actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: () {},
+            PopupMenuButton(
+              itemBuilder: (content) => [
+                PopupMenuItem(
+                  value: 1,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Settings()),
+                      );
+                    },
+                    child: Text(
+                      "Settings",
+                      style: GoogleFonts.raleway(
+                          fontSize: 13.0,
+                          letterSpacing: .03,
+                          color: Colors.black),
+                    ),
+                  ),
+                ),
+                PopupMenuItem(
+                    value: 2,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Help()),
+                        );
+                      },
+                      child: Text(
+                        "Help",
+                        style: GoogleFonts.raleway(
+                            fontSize: 13.0,
+                            letterSpacing: .03,
+                            color: Colors.black),
+                      ),
+                    )),
+              ],
             ),
           ],
         ),

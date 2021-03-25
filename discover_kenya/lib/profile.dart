@@ -1,10 +1,18 @@
 import 'package:discover_kenya/settings.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:discover_kenya/pagenav.dart';
 
 import 'help.dart';
 
+var user = FirebaseAuth.instance.currentUser;
+
 class Profile extends StatefulWidget {
+  final String uid;
+
+  Profile({Key key, this.uid}) : super(key: key);
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -14,30 +22,51 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
-        title: Text('Violet'),
+        title: FutureBuilder(
+          future: FirebaseDatabase.instance
+              .reference()
+              .child("Users")
+              .child(widget.uid)
+              .once(),
+          builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
+            if (snapshot.hasData) {
+              return Text(snapshot.data.value['name'],
+                  style:
+                      GoogleFonts.raleway(fontSize: 18.0, color: Colors.black));
+            } else {
+              return CircularProgressIndicator();
+            }
+          },
+        ),
         centerTitle: true,
+        // elevation: 0,
+        // iconTheme: IconThemeData(color: Colors.white),
+        // title: Text('Violet'),
+        // centerTitle: true,
         actions: <Widget>[
           PopupMenuButton(
             itemBuilder: (content) => [
               PopupMenuItem(
-                  value: 1,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Settings()),
-                      );
-                    },
-                    child: Text(
-                      "Settings",
-                      style: GoogleFonts.raleway(
-                          fontSize: 13.0,
-                          letterSpacing: .03,
-                          color: Colors.black),
-                    ),
-                  )),
+                value: 1,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Settings()),
+                    );
+                  },
+                  child: Text(
+                    "Settings",
+                    style: GoogleFonts.raleway(
+                        fontSize: 13.0,
+                        letterSpacing: .03,
+                        color: Colors.black),
+                  ),
+                ),
+              ),
               PopupMenuItem(
                   value: 2,
                   child: TextButton(
@@ -57,11 +86,6 @@ class _ProfileState extends State<Profile> {
                   )),
             ],
           ),
-
-          // IconButton(
-          //   icon: Icon(Icons.more_vert),
-          //   onPressed: () {},
-          // ),
         ],
       ),
       body: SingleChildScrollView(
@@ -72,22 +96,46 @@ class _ProfileState extends State<Profile> {
                 height: 30.0,
               ),
               CircleAvatar(
-                backgroundColor: Colors.grey,
                 radius: 50.0,
-                child: Text(
-                  'VK',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.black87,
-                  ),
+                backgroundColor: Colors.lightBlue[700],
+                child: FutureBuilder(
+                  future: FirebaseDatabase.instance
+                      .reference()
+                      .child("Users")
+                      .child(widget.uid)
+                      .once(),
+                  builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
+                    if (snapshot.hasData) {
+                      return Text(snapshot.data.value['name'].substring(0, 1),
+                          style: GoogleFonts.raleway(fontSize: 18.0));
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  },
                 ),
               ),
               SizedBox(
                 height: 30.0,
               ),
-              Text(
-                'Violet Kariuki',
-                style: TextStyle(color: Colors.black87, fontSize: 25.0),
+              Align(
+                child: FutureBuilder(
+                  future: FirebaseDatabase.instance
+                      .reference()
+                      .child("Users")
+                      .child(widget.uid)
+                      .once(),
+                  builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
+                    if (snapshot.hasData) {
+                      return Text(
+                        snapshot.data.value['name'],
+                        style: GoogleFonts.raleway(
+                            fontSize: 15.0, letterSpacing: .04),
+                      );
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  },
+                ),
               ),
               SizedBox(
                 height: 20.0,
