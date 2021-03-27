@@ -9,6 +9,9 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:discover_kenya/help.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:discover_kenya/upload_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 var user = FirebaseAuth.instance.currentUser;
 
@@ -44,7 +47,8 @@ class _ProfileState extends State<Profile> {
                     style: GoogleFonts.raleway(
                         fontSize: 18.0, color: Colors.black));
               } else {
-                return CircularProgressIndicator();
+                // return CircularProgressIndicator();
+                return Text("data");
               }
             },
           ),
@@ -58,7 +62,7 @@ class _ProfileState extends State<Profile> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Settings()),
+                        MaterialPageRoute(builder: (context) => SettingsPage()),
                       );
                     },
                     child: Text(
@@ -169,77 +173,15 @@ class _ProfileState extends State<Profile> {
                     },
                     child: Text("Get Location",
                         style: GoogleFonts.raleway(
-                            fontSize: 14.0, letterSpacing: .2))),
+                            fontSize: 16.0, letterSpacing: .2))),
                 SizedBox(
                   height: 30.0,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Text('0',
-                                style: GoogleFonts.raleway(
-                                    fontSize: 18.0, letterSpacing: .2)),
-                            Text('Posts',
-                                style: GoogleFonts.raleway(
-                                    fontSize: 18.0, letterSpacing: .2)),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Text('0',
-                                style: GoogleFonts.raleway(
-                                    fontSize: 18.0, letterSpacing: .2)),
-                            Text('Followers',
-                                style: GoogleFonts.raleway(
-                                    fontSize: 18.0, letterSpacing: .2)),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Text('0',
-                                style: GoogleFonts.raleway(
-                                    fontSize: 18.0, letterSpacing: .2)),
-                            Text('Following',
-                                style: GoogleFonts.raleway(
-                                    fontSize: 18.0, letterSpacing: .2)),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Divider(),
                 ),
-                SizedBox(
-                  height: 30.0,
-                ),
-                Container(
-                  child: Image(
-                    image: AssetImage('assets/no-camera.png'),
-                    height: 80.0,
-                  ),
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Text('No posts yet',
-                    style:
-                        GoogleFonts.raleway(fontSize: 18.0, letterSpacing: .2)),
               ],
             ),
           ),
