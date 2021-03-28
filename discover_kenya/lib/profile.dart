@@ -47,8 +47,7 @@ class _ProfileState extends State<Profile> {
                     style: GoogleFonts.raleway(
                         fontSize: 18.0, color: Colors.black));
               } else {
-                // return CircularProgressIndicator();
-                return Text("data");
+                return CircularProgressIndicator();
               }
             },
           ),
@@ -174,14 +173,28 @@ class _ProfileState extends State<Profile> {
                     child: Text("Get Location",
                         style: GoogleFonts.raleway(
                             fontSize: 16.0, letterSpacing: .2))),
-                SizedBox(
-                  height: 30.0,
-                ),
+                // SizedBox(
+                //   height: 30.0,
+                // ),
 
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Divider(),
                 ),
+
+                TextButton(
+                  autofocus: true,
+                  child: Text(
+                    "Upload Images",
+                    style: GoogleFonts.raleway(fontSize: 16.0),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => UploadImage(
+                              uid: widget.uid,
+                            )));
+                  },
+                )
               ],
             ),
           ),

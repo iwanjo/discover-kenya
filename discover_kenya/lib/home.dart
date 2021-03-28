@@ -1,5 +1,4 @@
 import 'package:discover_kenya/help.dart';
-import 'package:discover_kenya/profile.dart';
 import 'package:discover_kenya/settings.dart';
 import 'package:discover_kenya/upload.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -329,18 +328,17 @@ class _NavigateDrawerState extends State<NavigateDrawer> {
           ),
           ListTile(
             leading: new IconButton(
-              icon:
-                  new Icon(Icons.account_circle_outlined, color: Colors.black),
-              onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Profile())),
+              icon: new Icon(Icons.settings, color: Colors.black),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingsPage())),
             ),
             title: Text(
-              'Profile',
+              'Settings',
               style: GoogleFonts.raleway(fontSize: 15.0, letterSpacing: .25),
             ),
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Profile()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingsPage()));
             },
           ),
           Padding(
