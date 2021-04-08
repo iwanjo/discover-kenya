@@ -12,6 +12,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'home.dart';
+
 var user = FirebaseAuth.instance.currentUser;
 
 class UploadImage extends StatefulWidget {
@@ -305,7 +307,7 @@ class _UploadImageState extends State<UploadImage> {
       Fluttertoast.showToast(msg: 'Image Uploaded Successfully');
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) {
-        return Profile(
+        return Home(
           uid: widget.uid,
         );
       }));

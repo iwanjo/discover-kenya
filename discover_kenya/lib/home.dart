@@ -45,6 +45,65 @@ class Home extends StatelessWidget {
       ),
     );
 
+    final downloadButton = TextButton(
+      onPressed: () {},
+      child: Image.asset(
+        "assets/download.png",
+        width: 18.0,
+        height: 18.0,
+      ),
+    );
+
+    final shareButton = TextButton(
+      onPressed: () {},
+      child: Image.asset(
+        "assets/share.png",
+        width: 18.0,
+        height: 18.0,
+      ),
+    );
+
+    Widget _cardUI(Post post) {
+      return Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              title: Text(
+                post.author,
+                style: GoogleFonts.raleway(fontSize: 14.0, color: Colors.black),
+              ),
+              subtitle: Text(
+                post.description,
+                style: GoogleFonts.raleway(fontSize: 14.0, color: Colors.black),
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Image.network(
+                post.imageUrl,
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height * .4,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Text(
+                  post.location,
+                  style:
+                      GoogleFonts.raleway(fontSize: 14.0, color: Colors.black),
+                ),
+                downloadButton,
+                shareButton,
+              ],
+            ),
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -138,6 +197,34 @@ class Home extends StatelessWidget {
                     ],
                   ),
                 ),
+              ),
+              StreamBuilder(
+                stream:
+                    FirebaseFirestore.instance.collection("posts").snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: snapshot.data.docs.length,
+                      itemBuilder: (context, index) {
+                        Map<String, dynamic> postMap =
+                            snapshot.data.docs[index].data();
+
+                        Post post = Post(
+                            postMap['imageUrl'],
+                            postMap['description'],
+                            postMap['author'],
+                            postMap['location']);
+                        return _cardUI(post);
+                      },
+                    );
+                  }
+                },
               ),
               // Container(
               //   height: 40.0,
