@@ -25,6 +25,8 @@ class _EmailSignUpState extends State<EmailSignUp> {
   TextEditingController passwordMatch = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final buttonSize = MediaQuery.of(context);
+
     final prevButton = TextButton(
       onPressed: () {
         Navigator.push(
@@ -277,24 +279,35 @@ class _EmailSignUpState extends State<EmailSignUp> {
                                           padding: EdgeInsets.only(top: 30),
                                           child: isLoading
                                               ? CircularProgressIndicator()
-                                              : MaterialButton(
+                                              : Material(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          14.0),
                                                   color: Colors.lightBlue[600],
-                                                  splashColor: Colors.white,
-                                                  onPressed: () {
-                                                    if (_formKey.currentState
-                                                        .validate()) {
-                                                      setState(() {
-                                                        isLoading = true;
-                                                      });
-                                                      registerToFb();
-                                                    }
-                                                  },
-                                                  child: Text(
-                                                    "Register",
-                                                    style: GoogleFonts.raleway(
-                                                        color: Colors.white,
-                                                        fontSize: 17.0,
-                                                        letterSpacing: .4),
+                                                  child: MaterialButton(
+                                                    splashColor: Colors.white,
+                                                    onPressed: () {
+                                                      if (_formKey.currentState
+                                                          .validate()) {
+                                                        setState(() {
+                                                          isLoading = true;
+                                                        });
+                                                        registerToFb();
+                                                      }
+                                                    },
+                                                    minWidth:
+                                                        buttonSize.size.width /
+                                                            2.7,
+                                                    child: Text(
+                                                      "Register",
+                                                      style:
+                                                          GoogleFonts.raleway(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 17.0,
+                                                              letterSpacing:
+                                                                  .4),
+                                                    ),
                                                   ),
                                                 ),
                                         ),
@@ -370,7 +383,10 @@ class _EmailSignUpState extends State<EmailSignUp> {
         isLoading = false;
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => Pagenav()),
+          MaterialPageRoute(
+              builder: (context) => Pagenav(
+                    uid: result.user.uid,
+                  )),
         );
       });
     }).catchError((err) {

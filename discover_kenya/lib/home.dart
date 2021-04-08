@@ -6,7 +6,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'onboard.dart';
-import 'package:discover_kenya/components/tab_bar.dart';
+import 'package:discover_kenya/components/image_post.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Home extends StatelessWidget {
   const Home({@required this.uid});
@@ -91,11 +92,6 @@ class Home extends StatelessWidget {
                     )),
               ],
             ),
-
-            // IconButton(
-            //   icon: Icon(Icons.more_vert),
-            //   onPressed: () {},
-            // ),
           ],
         ),
         body: Container(
@@ -143,37 +139,37 @@ class Home extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                height: 40.0,
-                margin: EdgeInsets.all(25.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7.0),
-                  color: Colors.grey[300],
-                ),
-                child: Stack(
-                  children: <Widget>[
-                    TextField(
-                      // ignore: deprecated_member_use
-                      maxLengthEnforced: true,
-                      style: GoogleFonts.raleway(fontSize: 15.0),
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(
-                            left: 10,
-                            bottom: 10,
-                          ),
-                          border: InputBorder.none,
-                          hintText: "Search Great Photos",
-                          hintStyle: GoogleFonts.raleway(letterSpacing: .2)),
-                    ),
-                    Positioned(
-                      right: 0,
-                      top: 0,
-                      child: square,
-                    ),
-                  ],
-                ),
-              ),
-              CategoriesTabBar(),
+              // Container(
+              //   height: 40.0,
+              //   margin: EdgeInsets.all(25.0),
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(7.0),
+              //     color: Colors.grey[300],
+              //   ),
+              //   child: Stack(
+              //     children: <Widget>[
+              //       TextField(
+              //         // ignore: deprecated_member_use
+              //         maxLengthEnforced: true,
+              //         style: GoogleFonts.raleway(fontSize: 15.0),
+              //         decoration: InputDecoration(
+              //             contentPadding: EdgeInsets.only(
+              //               left: 10,
+              //               bottom: 10,
+              //             ),
+              //             border: InputBorder.none,
+              //             hintText: "Search Great Photos",
+              //             hintStyle: GoogleFonts.raleway(letterSpacing: .2)),
+              //       ),
+              //       Positioned(
+              //         right: 0,
+              //         top: 0,
+              //         child: square,
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // CategoriesTabBar(),
             ],
           ),
         ),

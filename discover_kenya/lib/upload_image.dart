@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:discover_kenya/help.dart';
 import 'package:discover_kenya/profile.dart';
@@ -25,10 +24,13 @@ class UploadImage extends StatefulWidget {
 
 class _UploadImageState extends State<UploadImage> {
   final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController authorController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final buttonSize = MediaQuery.of(context);
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -102,7 +104,7 @@ class _UploadImageState extends State<UploadImage> {
                 _imageFile == null
                     ? Container(
                         width: double.infinity,
-                        height: MediaQuery.of(context).size.height * .32,
+                        height: MediaQuery.of(context).size.height * .30,
                         color: Colors.grey,
                         child: Center(
                           child: TextButton(
@@ -136,6 +138,12 @@ class _UploadImageState extends State<UploadImage> {
                 ),
                 TextFormField(
                   controller: descriptionController,
+                  style: GoogleFonts.raleway(
+                    color: Colors.black,
+                    fontSize: 16.0,
+                    letterSpacing: .3,
+                  ),
+                  textCapitalization: TextCapitalization.words,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -152,7 +160,36 @@ class _UploadImageState extends State<UploadImage> {
                   height: MediaQuery.of(context).size.height * .05,
                 ),
                 TextFormField(
+                  controller: authorController,
+                  style: GoogleFonts.raleway(
+                    color: Colors.black,
+                    fontSize: 16.0,
+                    letterSpacing: .3,
+                  ),
+                  textCapitalization: TextCapitalization.words,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    labelText: "AUTHOR",
+                    labelStyle: GoogleFonts.raleway(
+                      color: Colors.black,
+                      letterSpacing: .2,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * .05,
+                ),
+                TextFormField(
                   controller: locationController,
+                  style: GoogleFonts.raleway(
+                    color: Colors.black,
+                    fontSize: 16.0,
+                    letterSpacing: .3,
+                  ),
+                  textCapitalization: TextCapitalization.words,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -170,15 +207,21 @@ class _UploadImageState extends State<UploadImage> {
                 ),
                 _loading
                     ? CircularProgressIndicator()
-                    : ElevatedButton(
-                        onPressed: () {
-                          _validate();
-                        },
-                        child: Text(
-                          "Complete",
-                          style: GoogleFonts.raleway(
-                            fontSize: 16.0,
-                            letterSpacing: .03,
+                    : Material(
+                        borderRadius: BorderRadius.circular(14.0),
+                        color: Colors.lightBlue[600],
+                        child: MaterialButton(
+                          onPressed: () {
+                            _validateImageFields();
+                          },
+                          elevation: 6.0,
+                          minWidth: buttonSize.size.width / 2.7,
+                          child: Text(
+                            "Complete",
+                            style: GoogleFonts.raleway(
+                                fontSize: 16.0,
+                                letterSpacing: .03,
+                                color: Colors.white),
                           ),
                         ),
                       ),
@@ -211,7 +254,7 @@ class _UploadImageState extends State<UploadImage> {
     });
   }
 
-  void _validate() {
+  void _validateImageFields() {
     if (_imageFile == null &&
         descriptionController.text.isEmpty &&
         locationController.text.isEmpty) {
@@ -227,11 +270,11 @@ class _UploadImageState extends State<UploadImage> {
       setState(() {
         _loading = true;
       });
-      _uploadImage();
+      _imageUpload();
     }
   }
 
-  void _uploadImage() {
+  void _imageUpload() {
     String imageFileName = DateTime.now().millisecondsSinceEpoch.toString();
     final Reference storageReference =
         FirebaseStorage.instance.ref().child('Images').child(imageFileName);
@@ -240,7 +283,7 @@ class _UploadImageState extends State<UploadImage> {
     uploadTask.then((TaskSnapshot taskSnapshot) {
       taskSnapshot.ref
           .getDownloadURL()
-          .then((imageUrl) => {_saveData(imageUrl)});
+          .then((imageUrl) => {_captureData(imageUrl)});
     }).catchError((error) {
       setState(() {
         _loading = false;
@@ -249,19 +292,12 @@ class _UploadImageState extends State<UploadImage> {
     });
   }
 
-  void _saveData(String imageUrl) {
-    // var dateFormat = DateFormat('MMM d, yyyy');
-    // var timeFormat = DateFormat('EEEE, hh:mm a');
-
-    // String date = dateFormat.format(DateTime.now()).toString();
-    // String time = timeFormat.format(DateTime.now()).toString();
-
+  void _captureData(String imageUrl) {
     FirebaseFirestore.instance.collection('posts').add({
       'imageUrl': imageUrl,
       'description': descriptionController.text,
+      'author': authorController.text,
       'location': locationController.text,
-      // 'date': date,
-      // 'time': time,
     }).whenComplete(() {
       setState(() {
         _loading = false;

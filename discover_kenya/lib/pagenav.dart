@@ -8,9 +8,13 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-var user = FirebaseAuth.instance.currentUser;
+// var user = FirebaseAuth.instance.currentUser;
 
 class Pagenav extends StatefulWidget {
+  final String uid;
+
+  Pagenav({Key key, this.uid}) : super(key: key);
+
   @override
   _PagenavState createState() => _PagenavState();
 }
@@ -77,57 +81,3 @@ class _PagenavState extends State<Pagenav> {
     );
   }
 }
-// class BottomBar extends StatefulWidget {
-//   @override
-//   _BottomBarState createState() => _BottomBarState();
-// }
-
-// class _BottomBarState extends State<BottomBar> {
-//   int _currentIndex = 0;
-//   final List<Widget> _children = [Profile()];
-//   @override
-//   Widget build(BuildContext context) {
-//     return BottomNavigationBar(
-//       onTap: onTabTapped,
-//       elevation: 0,
-//       type: BottomNavigationBarType.fixed,
-//       selectedItemColor: Colors.lightBlue[700],
-//       selectedLabelStyle: GoogleFonts.raleway(
-//           fontSize: 15.0, letterSpacing: .3, fontWeight: FontWeight.bold),
-//       unselectedLabelStyle: GoogleFonts.raleway(
-//           fontSize: 14.0, letterSpacing: .2, color: Colors.black),
-//       iconSize: 20.0,
-//       currentIndex: _currentIndex,
-//       items: [
-//         BottomNavigationBarItem(
-//           icon: Icon(
-//             Icons.home_outlined,
-//           ),
-//           label: 'Home',
-//         ),
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.explore_outlined, color: Colors.black),
-//           label: 'Discover',
-//         ),
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.favorite_outline, color: Colors.black),
-//           label: 'Liked',
-//         ),
-//         BottomNavigationBarItem(
-//           icon: Icon(
-//             Icons.account_circle_outlined,
-//             color: Colors.black,
-//           ),
-//           label: 'Profile',
-//         ),
-//       ],
-//     );
-//   }
-
-//   void onTabTapped(int index) {
-//     setState(() {
-
-//       _currentIndex = index;
-//     });
-//   }
-// }

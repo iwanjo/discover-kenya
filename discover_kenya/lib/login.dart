@@ -18,6 +18,8 @@ class _EmailLogInState extends State<EmailLogIn> {
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
+    final buttonSize = MediaQuery.of(context);
+
     final prevButton = TextButton(
       onPressed: () {
         Navigator.push(
@@ -202,23 +204,34 @@ class _EmailLogInState extends State<EmailLogIn> {
                                           padding: EdgeInsets.only(top: 43),
                                           child: isLoading
                                               ? CircularProgressIndicator()
-                                              : MaterialButton(
+                                              : Material(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          14.0),
                                                   color: Colors.lightBlue[600],
-                                                  onPressed: () {
-                                                    if (_formKey.currentState
-                                                        .validate()) {
-                                                      setState(() {
-                                                        isLoading = true;
-                                                      });
-                                                      logInToFb();
-                                                    }
-                                                  },
-                                                  child: Text(
-                                                    "Login",
-                                                    style: GoogleFonts.raleway(
-                                                        color: Colors.white,
-                                                        fontSize: 17.0,
-                                                        letterSpacing: .4),
+                                                  child: MaterialButton(
+                                                    onPressed: () {
+                                                      if (_formKey.currentState
+                                                          .validate()) {
+                                                        setState(() {
+                                                          isLoading = true;
+                                                        });
+                                                        logInToFb();
+                                                      }
+                                                    },
+                                                    minWidth:
+                                                        buttonSize.size.width /
+                                                            2.7,
+                                                    child: Text(
+                                                      "Login",
+                                                      style:
+                                                          GoogleFonts.raleway(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 17.0,
+                                                              letterSpacing:
+                                                                  .4),
+                                                    ),
                                                   ),
                                                 ),
                                         ),
@@ -283,7 +296,10 @@ class _EmailLogInState extends State<EmailLogIn> {
       isLoading = false;
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Pagenav()),
+        MaterialPageRoute(
+            builder: (context) => Pagenav(
+                  uid: result.user.uid,
+                )),
       );
     }).catchError((err) {
       print(err.message);

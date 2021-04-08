@@ -1,3 +1,4 @@
+import 'package:discover_kenya/components/image_post.dart';
 import 'package:discover_kenya/home.dart';
 import 'package:discover_kenya/onboard.dart';
 import 'package:discover_kenya/settings.dart';
@@ -11,7 +12,6 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:discover_kenya/upload_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 var user = FirebaseAuth.instance.currentUser;
 
@@ -26,7 +26,63 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   Position _currentPosition;
   String _currentAddress;
-  TextEditingController bioController = TextEditingController();
+  final downloadButton = TextButton(
+    onPressed: () {},
+    child: Image.asset(
+      "assets/download.png",
+      width: 18.0,
+      height: 18.0,
+    ),
+  );
+
+  final shareButton = TextButton(
+    onPressed: () {},
+    child: Image.asset(
+      "assets/share.png",
+      width: 18.0,
+      height: 18.0,
+    ),
+  );
+
+  Widget _cardUI(Post post) {
+    return Card(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          ListTile(
+            title: Text(
+              post.author,
+              style: GoogleFonts.raleway(fontSize: 14.0, color: Colors.black),
+            ),
+            subtitle: Text(
+              post.description,
+              style: GoogleFonts.raleway(fontSize: 14.0, color: Colors.black),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            child: Image.network(
+              post.imageUrl,
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * .4,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Text(
+                post.location,
+                style: GoogleFonts.raleway(fontSize: 14.0, color: Colors.black),
+              ),
+              downloadButton,
+              shareButton,
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +151,7 @@ class _ProfileState extends State<Profile> {
           ],
         ),
         body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Center(
             child: Column(
               children: [
@@ -148,15 +205,6 @@ class _ProfileState extends State<Profile> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * .03,
                 ),
-                // Padding(
-                //   padding: EdgeInsets.only(
-                //       top: MediaQuery.of(context).size.height * .02),
-                //   child: Text(
-                //     'Enter your one line bio here',
-                //     style:
-                //         GoogleFonts.raleway(letterSpacing: .3, fontSize: 15.0),
-                //   ),
-                // ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * .01,
                 ),
@@ -173,15 +221,6 @@ class _ProfileState extends State<Profile> {
                     child: Text("Get Location",
                         style: GoogleFonts.raleway(
                             fontSize: 16.0, letterSpacing: .2))),
-                // SizedBox(
-                //   height: 30.0,
-                // ),
-
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Divider(),
-                ),
-
                 TextButton(
                   autofocus: true,
                   child: Text(
@@ -194,7 +233,35 @@ class _ProfileState extends State<Profile> {
                               uid: widget.uid,
                             )));
                   },
-                )
+                ),
+                StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection("posts")
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.docs.length,
+                        itemBuilder: (context, index) {
+                          Map<String, dynamic> postMap =
+                              snapshot.data.docs[index].data();
+
+                          Post post = Post(
+                              postMap['imageUrl'],
+                              postMap['description'],
+                              postMap['author'],
+                              postMap['location']);
+                          return _cardUI(post);
+                        },
+                      );
+                    }
+                  },
+                ),
               ],
             ),
           ),
