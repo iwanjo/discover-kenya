@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "492896320674",
+    "project_id": "discover-kenya",
+    "storage_bucket": "discover-kenya.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492896320674:android:68641f0bf1f9b1b5bbabfb",
+        "android_client_info": {
+          "package_name": "com.example.discover_kenya"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492896320674-lfni3jlioqja9jr2amchh03vim0l51kk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1t8GzXPZR-Yo0phoEMVW_ipicawcsdj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "492896320674-lfni3jlioqja9jr2amchh03vim0l51kk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
