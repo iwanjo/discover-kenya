@@ -1,7 +1,17 @@
-import 'package:discover_kenya/discoverdetails.dart';
-import 'package:discover_kenya/dummy.dart';
+import 'package:discover_kenya/architecturedet.dart';
+import 'package:discover_kenya/sports.dart';
+import 'package:discover_kenya/wildlifedetails.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'beach.dart';
+import 'creative.dart';
+import 'culture.dart';
+import 'fashion.dart';
+import 'food.dart';
+import 'goldenhour.dart';
+import 'landscape.dart';
+import 'night.dart';
 
 class Discover extends StatefulWidget {
   @override
@@ -131,7 +141,7 @@ class _DiscoverState extends State<Discover> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ListViewPage()),
+                    MaterialPageRoute(builder: (context) => Discoverdetails()),
                   );
                 },
                 child: Container(
@@ -157,7 +167,7 @@ class _DiscoverState extends State<Discover> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Discoverdetails()),
+                    MaterialPageRoute(builder: (context) => Architecturedetails()),
                   );
                 },
                 child: Container(
@@ -183,7 +193,7 @@ class _DiscoverState extends State<Discover> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Discoverdetails()),
+                    MaterialPageRoute(builder: (context) => Beachdetails()),
                   );
                 },
                 child: Container(
@@ -209,7 +219,7 @@ class _DiscoverState extends State<Discover> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Discoverdetails()),
+                    MaterialPageRoute(builder: (context) => Culturedetails()),
                   );
                 },
                 child: Container(
@@ -235,7 +245,7 @@ class _DiscoverState extends State<Discover> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Discoverdetails()),
+                    MaterialPageRoute(builder: (context) => Fashiondetails()),
                   );
                 },
                 child: Container(
@@ -261,7 +271,7 @@ class _DiscoverState extends State<Discover> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Discoverdetails()),
+                    MaterialPageRoute(builder: (context) => Fooddetails()),
                   );
                 },
                 child: Container(
@@ -287,7 +297,7 @@ class _DiscoverState extends State<Discover> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Discoverdetails()),
+                    MaterialPageRoute(builder: (context) => Goldenhourdetails()),
                   );
                 },
                 child: Container(
@@ -313,7 +323,7 @@ class _DiscoverState extends State<Discover> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Discoverdetails()),
+                    MaterialPageRoute(builder: (context) => Landscapedetails()),
                   );
                 },
                 child: Container(
@@ -339,7 +349,7 @@ class _DiscoverState extends State<Discover> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Discoverdetails()),
+                    MaterialPageRoute(builder: (context) => Nightdetails()),
                   );
                 },
                 child: Container(
@@ -365,7 +375,7 @@ class _DiscoverState extends State<Discover> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Discoverdetails()),
+                    MaterialPageRoute(builder: (context) => Sportsdetails()),
                   );
                 },
                 child: Container(
@@ -391,7 +401,7 @@ class _DiscoverState extends State<Discover> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Discoverdetails()),
+                    MaterialPageRoute(builder: (context) => Creativedetails()),
                   );
                 },
                 child: Container(
