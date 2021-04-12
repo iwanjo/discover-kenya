@@ -11,7 +11,6 @@ import 'package:discover_kenya/help.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:discover_kenya/upload_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 var user = FirebaseAuth.instance.currentUser;
 

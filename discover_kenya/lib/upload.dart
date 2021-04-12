@@ -1,7 +1,6 @@
 import 'package:discover_kenya/help.dart';
 import 'package:discover_kenya/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Upload extends StatefulWidget {
