@@ -1,3 +1,4 @@
+
 name: discover_kenya
 description: A new Flutter project.
 
@@ -42,6 +43,12 @@ dependencies:
   transparent_image: ^2.0.0
   cloud_firestore: ^1.0.3
   fluttertoast: ^8.0.3
+
+
+  flutter_staggered_grid_view: ^0.3.4
+  cached_network_image: ^3.0.0
+  
+
 
 
 
