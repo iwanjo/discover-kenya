@@ -1,6 +1,4 @@
-import 'package:discover_kenya/help.dart';
-import 'package:discover_kenya/settings.dart';
-import 'package:discover_kenya/upload.dart';
+import 'package:discover_kenya/discover.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'onboard.dart';
 import 'package:discover_kenya/components/image_post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:share/share.dart';
+import 'package:file_picker/file_picker.dart';
 
 class Home extends StatelessWidget {
   const Home({@required this.uid});
@@ -111,47 +111,7 @@ class Home extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.black),
           title: logo,
           centerTitle: true,
-          actions: <Widget>[
-            PopupMenuButton(
-              itemBuilder: (content) => [
-                PopupMenuItem(
-                    value: 1,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SettingsPage()),
-                        );
-                      },
-                      child: Text(
-                        "Settings",
-                        style: GoogleFonts.raleway(
-                            fontSize: 13.0,
-                            letterSpacing: .03,
-                            color: Colors.black),
-                      ),
-                    )),
-                PopupMenuItem(
-                    value: 2,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Help()),
-                        );
-                      },
-                      child: Text(
-                        "Help",
-                        style: GoogleFonts.raleway(
-                            fontSize: 13.0,
-                            letterSpacing: .03,
-                            color: Colors.black),
-                      ),
-                    )),
-              ],
-            ),
-          ],
+          actions: <Widget>[],
         ),
         body: Container(
           height: MediaQuery.of(context).size.height,
@@ -359,70 +319,29 @@ class _NavigateDrawerState extends State<NavigateDrawer> {
           Padding(
             padding: EdgeInsets.only(top: 10),
           ),
-          ListTile(
-            leading: new IconButton(
-              icon: new Icon(Icons.search, color: Colors.black),
-              onPressed: () => null,
-            ),
-            title: Text(
-              'Search',
-              style: GoogleFonts.raleway(fontSize: 15.0, letterSpacing: .25),
-            ),
-            onTap: () {
-              print(widget.uid);
-            },
-          ),
           Padding(
             padding: EdgeInsets.only(top: 10),
           ),
           ListTile(
             leading: new IconButton(
               icon: new Icon(Icons.explore_outlined, color: Colors.black),
-              onPressed: () => null,
+              onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Discover())),
             ),
             title: Text(
               'Discover',
               style: GoogleFonts.raleway(fontSize: 15.0, letterSpacing: .25),
             ),
             onTap: () {
-              print(widget.uid);
-            },
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 10),
-          ),
-          ListTile(
-            leading: new IconButton(
-              icon: new Icon(Icons.upload_outlined, color: Colors.black),
-              onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Upload())),
-            ),
-            title: Text(
-              'Upload',
-              style: GoogleFonts.raleway(fontSize: 15.0, letterSpacing: .25),
-            ),
-            onTap: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Upload()));
+                  context, MaterialPageRoute(builder: (context) => Discover()));
             },
           ),
           Padding(
             padding: EdgeInsets.only(top: 10),
           ),
-          ListTile(
-            leading: new IconButton(
-              icon: new Icon(Icons.settings, color: Colors.black),
-              onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingsPage())),
-            ),
-            title: Text(
-              'Settings',
-              style: GoogleFonts.raleway(fontSize: 15.0, letterSpacing: .25),
-            ),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingsPage()));
-            },
+          Padding(
+            padding: EdgeInsets.only(top: 10),
           ),
           Padding(
             padding: EdgeInsets.only(top: 10),

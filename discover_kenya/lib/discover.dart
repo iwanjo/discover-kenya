@@ -1,17 +1,17 @@
-import 'package:discover_kenya/wildlife.dart';
+import 'package:discover_kenya/explore_screens/wildlife.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'architecture.dart';
-import 'beach.dart';
-import 'creative.dart';
-import 'culture.dart';
-import 'fashion.dart';
-import 'food.dart';
-import 'goldenhour.dart';
-import 'landscape.dart';
-import 'night.dart';
-import 'sport.dart';
+import 'explore_screens/architecture.dart';
+import 'explore_screens/beach.dart';
+import 'explore_screens/creative.dart';
+import 'explore_screens/culture.dart';
+import 'explore_screens/fashion.dart';
+import 'explore_screens/food.dart';
+import 'explore_screens/goldenhour.dart';
+import 'explore_screens/landscape.dart';
+import 'explore_screens/night.dart';
+import 'explore_screens/sport.dart';
 
 class Discover extends StatefulWidget {
   @override
@@ -163,11 +163,12 @@ class _DiscoverState extends State<Discover> {
                   )),
                 ),
               ),
-                InkWell(
+              InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Architecturedetails()),
+                    MaterialPageRoute(
+                        builder: (context) => Architecturedetails()),
                   );
                 },
                 child: Container(
@@ -189,7 +190,7 @@ class _DiscoverState extends State<Discover> {
                   )),
                 ),
               ),
-                InkWell(
+              InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -215,7 +216,7 @@ class _DiscoverState extends State<Discover> {
                   )),
                 ),
               ),
-                InkWell(
+              InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -241,7 +242,7 @@ class _DiscoverState extends State<Discover> {
                   )),
                 ),
               ),
-                InkWell(
+              InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -267,7 +268,7 @@ class _DiscoverState extends State<Discover> {
                   )),
                 ),
               ),
-                InkWell(
+              InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -293,11 +294,12 @@ class _DiscoverState extends State<Discover> {
                   )),
                 ),
               ),
-                InkWell(
+              InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Goldenhourdetails()),
+                    MaterialPageRoute(
+                        builder: (context) => Goldenhourdetails()),
                   );
                 },
                 child: Container(
@@ -319,7 +321,7 @@ class _DiscoverState extends State<Discover> {
                   )),
                 ),
               ),
-                InkWell(
+              InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -345,7 +347,7 @@ class _DiscoverState extends State<Discover> {
                   )),
                 ),
               ),
-                InkWell(
+              InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -371,7 +373,7 @@ class _DiscoverState extends State<Discover> {
                   )),
                 ),
               ),
-                InkWell(
+              InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -397,7 +399,7 @@ class _DiscoverState extends State<Discover> {
                   )),
                 ),
               ),
-                InkWell(
+              InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -423,8 +425,6 @@ class _DiscoverState extends State<Discover> {
                   )),
                 ),
               ),
-             
-              
             ],
           ),
         ),

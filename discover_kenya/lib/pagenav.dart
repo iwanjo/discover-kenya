@@ -23,7 +23,6 @@ class _PagenavState extends State<Pagenav> {
   List<Widget> _widgetOptions = <Widget>[
     Home(uid: user.uid),
     Discover(),
-    Likes(),
     Profile(uid: user.uid)
   ];
   @override
@@ -42,7 +41,7 @@ class _PagenavState extends State<Pagenav> {
             child: GNav(
                 rippleColor: Colors.grey[300],
                 hoverColor: Colors.grey[200],
-                gap: 4,
+                gap: 3,
                 activeColor: Colors.lightBlue[700],
                 iconSize: 24,
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
@@ -58,10 +57,6 @@ class _PagenavState extends State<Pagenav> {
                   GButton(
                     icon: LineIcons.fire,
                     text: 'Discover',
-                  ),
-                  GButton(
-                    icon: LineIcons.heart_o,
-                    text: 'Saved',
                   ),
                   GButton(
                     icon: LineIcons.user,

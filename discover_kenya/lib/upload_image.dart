@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:discover_kenya/help.dart';
-import 'package:discover_kenya/settings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -53,47 +51,7 @@ class _UploadImageState extends State<UploadImage> {
             },
           ),
           centerTitle: true,
-          actions: <Widget>[
-            PopupMenuButton(
-              itemBuilder: (content) => [
-                PopupMenuItem(
-                  value: 1,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SettingsPage()),
-                      );
-                    },
-                    child: Text(
-                      "Settings",
-                      style: GoogleFonts.raleway(
-                          fontSize: 13.0,
-                          letterSpacing: .03,
-                          color: Colors.black),
-                    ),
-                  ),
-                ),
-                PopupMenuItem(
-                    value: 2,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Help()),
-                        );
-                      },
-                      child: Text(
-                        "Help",
-                        style: GoogleFonts.raleway(
-                            fontSize: 13.0,
-                            letterSpacing: .03,
-                            color: Colors.black),
-                      ),
-                    )),
-              ],
-            ),
-          ],
+          actions: <Widget>[],
         ),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
