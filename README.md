@@ -35,8 +35,8 @@ One can click on a photo to get more details about it such as destination etc.
 
 ### Home Screen
 
-![Home Screen - Discover Kenya](discover_kenya/screenshots/home.jpeg)
+![Home Screen - Discover Kenya](discover_kenya/screenshots/6. Home Screen.png)
 
 ### Drawer
 
-![Drawer - Discover Kenya](discover_kenya/screenshots/Drawer.jpeg)
+![Drawer - Discover Kenya](discover_kenya/screenshots/7. Drawer Screen.png )
