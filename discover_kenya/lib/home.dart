@@ -195,7 +195,7 @@ class Home extends StatelessWidget {
   _downloadImage() async {
     try {
       var _imageId = await ImageDownloader.downloadImage(
-          "https://firebasestorage.googleapis.com/v0/b/discover-kenya.appspot.com/o/Images%2F1618177309303?alt=media&token=810843ee-d588-4655-9517-23035359493b");
+          "https://firebasestorage.googleapis.com/v0/b/discover-kenya.appspot.com/o/Images%2F1618177486885?alt=media&token=b77639a1-30d7-47fe-995c-fe72e57dd27e");
       if (_imageId == null) {
         return;
       }
