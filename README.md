@@ -35,8 +35,47 @@ One can click on a photo to get more details about it such as destination etc.
 
 ### Home Screen
 
-![Home Screen - Discover Kenya](discover_kenya/screenshots/6. Home Screen.png)
+![Home Screen - Discover Kenya](discover_kenya/screenshots/new-home.png)
 
 ### Drawer
 
-![Drawer - Discover Kenya](discover_kenya/screenshots/7. Drawer Screen.png )
+![Drawer - Discover Kenya](discover_kenya/screenshots/new-drawer.png)
+
+### Profile Screen
+
+![Drawer - Discover Kenya](discover_kenya/screenshots/new-profile.png)
+
+### Discover Screen
+
+![Drawer - Discover Kenya](discover_kenya/screenshots/new-discover.png)
+
+### Categories Screen
+
+![Drawer - Discover Kenya](discover_kenya/screenshots/new-image-section.png)
+
+### Image Category Screen
+
+![Drawer - Discover Kenya](discover_kenya/screenshots/new-image-section.png)
+
+### Image View Screen
+
+![Drawer - Discover Kenya](discover_kenya/screenshots/new-image-view.png)
+
+### Upload Image Screen
+
+![Drawer - Discover Kenya](discover_kenya/screenshots/new-upload.png)
+
+### Camera or Gallery Screen
+
+![Drawer - Discover Kenya](discover_kenya/screenshots/new-choose.png)
+
+### Uploaded Image Information Screen
+
+![Drawer - Discover Kenya](discover_kenya/screenshots/new-image-info.png)
+
+### Completed Uploaded Image
+
+![Drawer - Discover Kenya](discover_kenya/screenshots/new-complete-upload.png)
+
+
+
