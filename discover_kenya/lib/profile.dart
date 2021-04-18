@@ -174,6 +174,7 @@ class _ProfileState extends State<Profile> {
                   ),
                 TextButton(
                     onPressed: () {
+                      // _getCurrentLocation();
                       _getCurrentLocation();
                     },
                     child: Text("Get Location",
@@ -192,34 +193,6 @@ class _ProfileState extends State<Profile> {
                             )));
                   },
                 ),
-                // StreamBuilder(
-                //   stream: FirebaseFirestore.instance
-                //       .collection("posts")
-                //       .snapshots(),
-                //   builder: (context, snapshot) {
-                //     if (!snapshot.hasData) {
-                //       return Center(
-                //         child: CircularProgressIndicator(),
-                //       );
-                //     } else {
-                //       return ListView.builder(
-                //         shrinkWrap: true,
-                //         itemCount: snapshot.data.docs.length,
-                //         itemBuilder: (context, index) {
-                //           Map<String, dynamic> postMap =
-                //               snapshot.data.docs[index].data();
-
-                //           Post post = Post(
-                //               postMap['imageUrl'],
-                //               postMap['description'],
-                //               postMap['author'],
-                //               postMap['location']);
-                //           return _cardUI(post);
-                //         },
-                //       );
-                //     }
-                //   },
-                // ),
               ],
             ),
           ),

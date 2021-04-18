@@ -24,15 +24,15 @@ class _DiscoverState extends State<Discover> {
     final discoverCategories = [
       {
         'id': 0,
-        'title': ' wildlife',
+        'title': 'Wildlife',
         'imgUrl':
             'https://images.unsplash.com/photo-1610898404424-1439b7006e1c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80'
       },
       {
         'id': 1,
-        'title': 'architecture',
+        'title': 'Architecture',
         'imgUrl':
-            'https://www.constructionkenya.com/wp-content/uploads/2020/09/Nairobi-Skyscrapers.jpg'
+            'https://static.travelweekly.com/i/sized/780/437/media.iceportal.com/114865/photos/67046664_XL.jpg'
       },
       {
         'id': 2,
@@ -84,7 +84,7 @@ class _DiscoverState extends State<Discover> {
       },
       {
         'id': 10,
-        'title': 'creative',
+        'title': 'Creative',
         'imgUrl':
             'https://www.designindaba.com/sites/default/files/node/news/8955/mboisa20.jpg'
       }

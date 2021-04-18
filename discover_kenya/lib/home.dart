@@ -1,3 +1,7 @@
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:share/share.dart';
+import 'package:share_extend/share_extend.dart';
 import 'package:discover_kenya/discover.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -6,8 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'onboard.dart';
 import 'package:discover_kenya/components/image_post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:share/share.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:image_downloader/image_downloader.dart';
 
 class Home extends StatelessWidget {
   const Home({@required this.uid});
@@ -30,23 +33,10 @@ class Home extends StatelessWidget {
       fit: BoxFit.fill,
     );
 
-    final square = Container(
-      height: 40,
-      width: 40,
-      // color: Colors.transparent,
-      decoration: BoxDecoration(
-          color: Colors.lightBlue[700],
-          borderRadius: BorderRadius.all(Radius.circular(7.0))),
-      child: Center(
-        child: Icon(
-          Icons.search,
-          color: Colors.white,
-        ),
-      ),
-    );
-
     final downloadButton = TextButton(
-      onPressed: () {},
+      onPressed: () {
+        _downloadImage();
+      },
       child: Image.asset(
         "assets/download.png",
         width: 18.0,
@@ -186,41 +176,39 @@ class Home extends StatelessWidget {
                   }
                 },
               ),
-              // Container(
-              //   height: 40.0,
-              //   margin: EdgeInsets.all(25.0),
-              //   decoration: BoxDecoration(
-              //     borderRadius: BorderRadius.circular(7.0),
-              //     color: Colors.grey[300],
-              //   ),
-              //   child: Stack(
-              //     children: <Widget>[
-              //       TextField(
-              //         // ignore: deprecated_member_use
-              //         maxLengthEnforced: true,
-              //         style: GoogleFonts.raleway(fontSize: 15.0),
-              //         decoration: InputDecoration(
-              //             contentPadding: EdgeInsets.only(
-              //               left: 10,
-              //               bottom: 10,
-              //             ),
-              //             border: InputBorder.none,
-              //             hintText: "Search Great Photos",
-              //             hintStyle: GoogleFonts.raleway(letterSpacing: .2)),
-              //       ),
-              //       Positioned(
-              //         right: 0,
-              //         top: 0,
-              //         child: square,
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // CategoriesTabBar(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 19.0),
+                child: TextButton(
+                    onPressed: () {
+                      Share.share(
+                          "Hey! I am using this amazing new app called Discover Kenya. It's a photo sharing app showcasing Kenya's hidden gems. You can download it on the App or Play Store now.");
+                    },
+                    child: Text(
+                        "Enjoy using our app? Recommend Discover Kenya to your friends here.")),
+              ),
             ],
           ),
         ),
         drawer: NavigateDrawer(uid: this.uid));
+  }
+
+  _downloadImage() async {
+    try {
+      var _imageId = await ImageDownloader.downloadImage(
+          "https://firebasestorage.googleapis.com/v0/b/discover-kenya.appspot.com/o/Images%2F1618177309303?alt=media&token=810843ee-d588-4655-9517-23035359493b");
+      if (_imageId == null) {
+        return;
+      }
+
+      var fileName = await ImageDownloader.findName(_imageId);
+      var path = await ImageDownloader.findPath(_imageId);
+      var size = await ImageDownloader.findByteSize(_imageId);
+      var mimeType = await ImageDownloader.findMimeType(_imageId);
+
+      Fluttertoast.showToast(msg: "Image Downloaded Successfully");
+    } on PlatformException catch (error) {
+      print(error);
+    }
   }
 }
 
