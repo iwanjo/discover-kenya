@@ -1,7 +1,6 @@
 import 'package:discover_kenya/explore_screens/wildlife.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'explore_screens/architecture.dart';
 import 'explore_screens/beach.dart';
 import 'explore_screens/creative.dart';
